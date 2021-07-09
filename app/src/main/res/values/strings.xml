@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Movies time</string>
+    <string name="description_poster_image">Poster image</string>
+    <string name="text_genre_fighters">боевики</string>
+    <string name="text_date_22_04_2021">22.04.2021</string>
+    <string name="text_title_wrath_of_man">Гнев человеческий</string>
+    <string name="text_description_wrath_of_man">Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя свои мотивы, он внедряется в инкассаторскую компанию, чтобы выйти на соучастников серии многомиллионных ограблений, потрясших Лос-Анджелес. В этой запутанной игре у каждого своя роль, но под подозрением оказываются все. Виновных же обязательно постигнет гнев человеческий.</string>
+    <string name="text_age_limit_18">18+</string>
+    <string name="text_actors">Актеры</string>
+    <string name="text_actor_statham">Джейсон Стэйтем</string>
+    <string name="text_actor_mccallany">Холт Маккэллани</string>
+
 </resources>
