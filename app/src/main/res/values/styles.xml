@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="filed_star_style">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+    </style>
+    <style name="filed_star_style.filed">
+        <item name="android:background">@drawable/ic_star_filed</item>
+    </style>
+    <style name="filed_star_style.border">
+        <item name="android:background">@drawable/ic_star_border</item>
+    </style>
+
+    <style name="text_roboto_400_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="text_roboto_400_style.10sp">
+
+        <item name="android:textSize">@dimen/text_size_10sp</item>
+    </style>
+    <style name="text_roboto_400_style.12sp">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+    <style name="text_roboto_400_style.14sp">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
+
+    <style name="text_roboto_500_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="text_roboto_500_style.20sp">
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+    <style name="text_roboto_500_style.16sp">
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
+    <style name="text_roboto_700_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="text_roboto_700_style.12sp">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+</resources>
