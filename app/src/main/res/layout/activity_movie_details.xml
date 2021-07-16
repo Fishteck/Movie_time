@@ -55,11 +55,10 @@
                 android:id="@+id/movie_details_date_of_release"
                 style="@style/text_roboto_400_style.14sp"
                 android:layout_marginStart="@dimen/indent_14dp"
-                android:layout_marginTop="@dimen/indent_36dp"
                 android:text="@string/text_date_22_04_2021"
-                android:gravity="center_horizontal"
                 app:layout_constraintStart_toEndOf="@id/movie_details_genre"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/movie_details_genre"
+                app:layout_constraintBottom_toBottomOf="@id/movie_details_genre"/>
 
             <TextView
                 android:id="@+id/movie_details_title"
