@@ -38,16 +38,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background"
-            android:paddingStart="20dp"
+            android:paddingStart="@dimen/indent_20dp"
             android:paddingEnd="0dp">
 
             <TextView
                 android:id="@+id/movie_details_genre"
                 style="@style/text_roboto_400_style.10sp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="@dimen/indent_36dp"
                 android:background="@drawable/text_view_genre_background"
                 android:gravity="center"
-
                 android:text="@string/text_genre_fighters"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -55,17 +54,18 @@
             <TextView
                 android:id="@+id/movie_details_date_of_release"
                 style="@style/text_roboto_400_style.14sp"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="@dimen/indent_14dp"
+                android:layout_marginTop="@dimen/indent_36dp"
                 android:text="@string/text_date_22_04_2021"
-                app:layout_constraintBaseline_toBaselineOf="@id/movie_details_genre"
+                android:gravity="center_horizontal"
                 app:layout_constraintStart_toEndOf="@id/movie_details_genre"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/movie_details_title"
                 style="@style/text_roboto_500_style.20sp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="@dimen/indent_14dp"
+                android:layout_marginEnd="@dimen/indent_8dp"
                 android:text="@string/text_title_wrath_of_man"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/movie_details_age_limit"
@@ -76,8 +76,8 @@
             <TextView
                 android:id="@+id/movie_details_age_limit"
                 style="@style/text_roboto_400_style.14sp"
-                android:layout_marginTop="42dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="@dimen/indent_42dp"
+                android:layout_marginEnd="@dimen/indent_20dp"
                 android:background="@drawable/text_view_circle_border"
                 android:gravity="center"
                 android:text="@string/text_age_limit_18"
@@ -88,7 +88,7 @@
                 android:id="@+id/movie_details_rating_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/indent_8dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_title">
@@ -107,8 +107,8 @@
             <TextView
                 android:id="@+id/movie_details_description"
                 style="@style/text_roboto_400_style.14sp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="@dimen/indent_20dp"
+                android:layout_marginEnd="@dimen/indent_20dp"
                 android:text="@string/text_description_wrath_of_man"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
             <TextView
                 android:id="@+id/movie_details_actors_text"
                 style="@style/text_roboto_500_style.16sp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="@dimen/indent_36dp"
                 android:text="@string/text_actors"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_description" />
@@ -126,14 +126,14 @@
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/indent_16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_actors_text">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="45dp"
+                    android:layout_marginBottom="@dimen/indent_42dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -147,7 +147,7 @@
 
                     <TextView
                         style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/indent_12dp"
                         android:text="@string/text_actor_statham"
                         app:layout_constraintStart_toStartOf="@id/first"
                         app:layout_constraintTop_toBottomOf="@id/first" />
@@ -156,7 +156,7 @@
                         android:id="@+id/second"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/indent_10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/mccallany"
                         app:layout_constraintStart_toEndOf="@id/first"
@@ -164,7 +164,7 @@
 
                     <TextView
                         style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/indent_12dp"
                         android:text="@string/text_actor_mccallany"
                         app:layout_constraintStart_toStartOf="@id/second"
                         app:layout_constraintTop_toBottomOf="@id/second" />
@@ -173,7 +173,7 @@
                         android:id="@+id/third"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/indent_10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/statham"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +182,7 @@
 
                     <TextView
                         style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/indent_12dp"
                         android:text="@string/text_actor_statham"
                         app:layout_constraintStart_toStartOf="@id/third"
                         app:layout_constraintTop_toBottomOf="@id/third" />
@@ -208,8 +208,8 @@
         <View
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="@dimen/indent_14dp"
+            android:layout_marginBottom="@dimen/indent_14dp"
             android:background="@drawable/ic_home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/movie_details_guideline_second"
@@ -234,8 +234,8 @@
         <View
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="@dimen/indent_14dp"
+            android:layout_marginBottom="@dimen/indent_14dp"
             android:background="@drawable/ic_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
