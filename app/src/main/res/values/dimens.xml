@@ -15,4 +15,6 @@
     <dimen name="indent_36dp">36dp</dimen>
     <dimen name="indent_42dp">42dp</dimen>
 
+    <dimen name="corner_radius_item_movie">10dp</dimen>
+
 </resources>

@@ -29,6 +29,9 @@
     <style name="text_roboto_400_style.14sp">
         <item name="android:textSize">@dimen/text_size_14sp</item>
     </style>
+    <style name="text_roboto_400_style.8sp">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
 
     <style name="text_roboto_500_style">
         <item name="android:layout_width">wrap_content</item>
@@ -42,6 +45,9 @@
     <style name="text_roboto_500_style.16sp">
         <item name="android:textSize">@dimen/text_size_20sp</item>
     </style>
+    <style name="text_roboto_500_style.14sp">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
 
     <style name="text_roboto_700_style">
         <item name="android:layout_width">wrap_content</item>
@@ -52,4 +58,8 @@
     <style name="text_roboto_700_style.12sp">
         <item name="android:textSize">@dimen/text_size_12sp</item>
     </style>
+    <style name="text_roboto_700_style.16sp">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
 </resources>
