@@ -26,36 +26,29 @@ class GenresListAdapter(private val listener: GenreItemListener) : RecyclerView.
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_genre, parent, false)
-        return GenresListHolder(view, listener)
+        return GenresListHolder(view)
     }
 
     override fun onBindViewHolder(holder: GenresListHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 
     override fun getItemCount(): Int = items.size
 }
 
-class GenresListHolder(private val view : View,
-                       private val listener : GenresListAdapter.GenreItemListener)
-    : RecyclerView.ViewHolder(view),  View.OnClickListener{
+class GenresListHolder(private val view : View)
+    : RecyclerView.ViewHolder(view){
 
     private val text : TextView = view.findViewById(R.id.item_genre_text)
 
-    private lateinit var genre : GenreModel
-
-    init {
-        view.setOnClickListener(this)
+    fun bind(item : GenreModel, listener: GenresListAdapter.GenreItemListener) {
+        text.text = item.name
+        view.setOnClickListener {
+            listener.onClickedGenre(item.name)
+        }
     }
 
-    fun bind(item : GenreModel) {
-        this.genre = item
-        text.text = genre.name
-    }
 
-    override fun onClick(v: View?) {
-        listener.onClickedGenre(text = genre.name)
-    }
 
 
 }

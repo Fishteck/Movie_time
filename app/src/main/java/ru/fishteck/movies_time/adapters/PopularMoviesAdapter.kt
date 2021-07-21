@@ -31,19 +31,18 @@ class PopularMoviesAdapter(private val listener: MovieItemListener) : RecyclerVi
         val view = LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.item_movie, parent, false)
-        return PopularMoviesHolder(view, listener)
+        return PopularMoviesHolder(view)
     }
 
     override fun onBindViewHolder(holder: PopularMoviesHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 
     override fun getItemCount(): Int = items.size
 }
 
-class PopularMoviesHolder ( private val view : View,
-                            private val listener : PopularMoviesAdapter.MovieItemListener)
-    : RecyclerView.ViewHolder(view), View.OnClickListener {
+class PopularMoviesHolder ( private val view : View)
+    : RecyclerView.ViewHolder(view) {
 
     private val image : ImageView = view.findViewById(R.id.item_movie_poster_image)
     private val title : TextView = view.findViewById(R.id.item_movie_poster_title)
@@ -51,27 +50,25 @@ class PopularMoviesHolder ( private val view : View,
     private val ageLimit : TextView = view.findViewById(R.id.item_movie_age_limit)
     private val ratingBar : RatingBar = view.findViewById(R.id.item_movie_rating_bar)
 
-    private lateinit var movie : MovieModel
 
-    init {
-        view.setOnClickListener(this)
-    }
 
-    fun bind(item : MovieModel) {
-        this.movie = item
+
+    fun bind(item : MovieModel, listener: PopularMoviesAdapter.MovieItemListener) {
+
         Glide
                 .with(view)
-                .load(movie.imageUrl)
+                .load(item.imageUrl)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(image)
-        title.text = movie.title
-        description.text = movie.description
-        ageLimit.text = movie.ageRestriction.toString() + "+"
-        ratingBar.rating = movie.rateScore.toFloat()
+        title.text = item.title
+        description.text = item.description
+        ageLimit.text = item.ageRestriction.toString() + "+"
+        ratingBar.rating = item.rateScore.toFloat()
+        view.setOnClickListener {
+            listener.onClickedMovie(title = item.title)
+        }
     }
 
-    override fun onClick(v: View?) {
-        listener.onClickedMovie(title = movie.title)
-    }
+
 }
