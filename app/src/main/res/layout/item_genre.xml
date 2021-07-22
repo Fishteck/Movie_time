@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/indent_8dp">
+    <TextView
+        android:id="@+id/item_genre_text"
+        style="@style/text_roboto_400_style.10sp"
+        android:paddingStart="@dimen/indent_8dp"
+        android:paddingEnd="@dimen/indent_8dp"
+        android:background="@drawable/text_view_genre_background"
+        android:gravity="center"
+        />
+</FrameLayout>

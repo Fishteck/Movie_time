@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/indent_42dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_movie_poster_image_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/corner_radius_item_movie">
+        <ImageView
+            android:id="@+id/item_movie_poster_image"
+            android:layout_width="150dp"
+            android:layout_height="216dp"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/item_movie_poster_title"
+        style="@style/text_roboto_500_style.14sp"
+        android:layout_marginTop="@dimen/indent_8dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:layout_constrainedWidth="true"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"
+        app:layout_constraintTop_toBottomOf="@id/item_movie_poster_image_container"
+        tools:text="Гнев человеческий " />
+
+    <TextView
+        android:id="@+id/item_movie_poster_description"
+        style="@style/text_roboto_400_style.12sp"
+        android:layout_marginTop="@dimen/indent_10dp"
+        android:maxLines="5"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
+        app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"
+        app:layout_constraintTop_toBottomOf="@id/item_movie_poster_title"
+        tools:text="@string/text_description_wrath_of_man" />
+
+    <RatingBar
+        android:id="@+id/item_movie_rating_bar"
+       style="@style/Widget.AppCompat.RatingBar.Small"
+        android:progressTint="@android:color/black"
+        android:progressBackgroundTint="@android:color/black"
+        android:secondaryProgressTint="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginEnd="4dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="4"
+        android:stepSize="1"
+        app:layout_constraintBottom_toBottomOf="@id/item_movie_age_limit"
+        app:layout_constraintEnd_toStartOf="@+id/item_movie_age_limit"
+        app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"
+        app:layout_constraintTop_toTopOf="@id/item_movie_age_limit" />
+
+
+    <TextView
+        android:id="@+id/item_movie_age_limit"
+        style="@style/text_roboto_400_style.10sp"
+        android:layout_marginTop="@dimen/indent_10dp"
+        android:background="@drawable/text_view_circle_border_small"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
+        app:layout_constraintTop_toBottomOf="@id/item_movie_poster_description"
+        tools:text="@string/text_age_limit_18" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

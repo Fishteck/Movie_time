@@ -9,5 +9,6 @@
     <string name="text_actors">Актеры</string>
     <string name="text_actor_statham">Джейсон Стэйтем</string>
     <string name="text_actor_mccallany">Холт Маккэллани</string>
+    <string name="text_title_popular_now">Популярное сейчас</string>
 
 </resources>
