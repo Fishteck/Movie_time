@@ -1,22 +1,10 @@
 package ru.fishteck.movies_time.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import ru.fishteck.movies_time.*
-import ru.fishteck.movies_time.adapters.GenresListAdapter
-import ru.fishteck.movies_time.data.local.GenresDTO
-import ru.fishteck.movies_time.data.local.GenresDataSourceImpl
-import ru.fishteck.movies_time.data.local.MoviesDTO
-import ru.fishteck.movies_time.data.local.MoviesDataSourceImpl
-import ru.fishteck.movies_time.utils.DiffUtilMovies
-import ru.fishteck.movies_time.utils.GridItemDecoration
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,12 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            popularMoviesFragment = PopularMoviesFragment()
+            popularMoviesFragment = PopularMoviesFragment.newInstance()
             popularMoviesFragment?.apply {
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.main_nav_fragment, this, PopularMoviesFragment.TAG)
-                        .commit()
+                replaceFragment(
+                        fragment = this,
+                        fragmentTag = PopularMoviesFragment.TAG
+                )
             }
         } else {
             popularMoviesFragment =
@@ -40,24 +28,47 @@ class MainActivity : AppCompatActivity() {
                             .findFragmentByTag(PopularMoviesFragment.TAG) as? PopularMoviesFragment
         }
 
+
+
         findViewById<ImageButton>(R.id.main_bottom_nav_btn_home).setOnClickListener {
-            supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.main_nav_fragment, PopularMoviesFragment(), PopularMoviesFragment.TAG)
-                    .commit()
+            replaceFragment(
+                    fragment = PopularMoviesFragment.newInstance(),
+                    fragmentTag = PopularMoviesFragment.TAG
+            )
+
         }
 
         findViewById<ImageButton>(R.id.main_bottom_nav_btn_profile).setOnClickListener {
+                replaceFragment(
+                        fragment = ProfileFragment.newInstance(),
+                        fragmentTag = ProfileFragment.TAG,
+                        true
+                )
+        }
 
-            if (supportFragmentManager.findFragmentByTag(ProfileFragment.TAG) == null) {
+    }
+
+    private fun replaceFragment(fragment: Fragment, fragmentTag: String, addBackStack: Boolean = false) {
+
+        val fragmentPopped: Boolean = supportFragmentManager
+                .popBackStackImmediate(fragmentTag, 0)
+
+
+        if (addBackStack) {
+            if (!fragmentPopped && supportFragmentManager.findFragmentByTag(ProfileFragment.TAG) == null) {
                 supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.main_nav_fragment, ProfileFragment(), ProfileFragment.TAG)
+                        .replace(R.id.main_nav_fragment, fragment, fragmentTag)
                         .addToBackStack(null)
                         .commit()
             }
-        }
 
+        } else {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_nav_fragment, fragment, fragmentTag)
+                    .commit()
+        }
     }
 
 

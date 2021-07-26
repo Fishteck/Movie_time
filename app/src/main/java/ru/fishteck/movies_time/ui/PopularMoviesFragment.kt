@@ -91,5 +91,6 @@ class PopularMoviesFragment
 
     companion object {
         const val TAG = "POPULAR_MOVIES_FRAGMENT_TAG"
+        fun newInstance() = PopularMoviesFragment()
     }
 }

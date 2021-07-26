@@ -7,5 +7,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     companion object {
         const val TAG = "PROFILE_FRAGMENT_TAG"
+        fun newInstance() = ProfileFragment()
     }
 }

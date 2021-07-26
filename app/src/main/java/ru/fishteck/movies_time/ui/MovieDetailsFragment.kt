@@ -13,5 +13,6 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
     companion object {
         const val TAG = "MOVIE_DETAILS_FRAGMENT_TAG"
+        fun newInstance() = MovieDetailsFragment()
     }
 }
