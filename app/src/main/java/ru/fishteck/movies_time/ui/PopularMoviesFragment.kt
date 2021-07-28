@@ -15,6 +15,7 @@ import ru.fishteck.movies_time.data.local.GenresDTO
 import ru.fishteck.movies_time.data.local.GenresDataSourceImpl
 import ru.fishteck.movies_time.data.local.MoviesDTO
 import ru.fishteck.movies_time.data.local.MoviesDataSourceImpl
+import ru.fishteck.movies_time.data.models.MovieModel
 import ru.fishteck.movies_time.utils.DiffUtilMovies
 import ru.fishteck.movies_time.utils.GridItemDecoration
 
@@ -71,13 +72,13 @@ class PopularMoviesFragment
         recyclerView?.addItemDecoration(GridItemDecoration(10, 2))
     }
 
-    override fun onClickedMovie(title: String) {
-        Toast.makeText(context, title, Toast.LENGTH_SHORT).show()
+    override fun onClickedMovie(movieModel: MovieModel) {
+
         activity
                 ?.supportFragmentManager
                 ?.beginTransaction()
                 ?.replace(R.id.main_nav_fragment,
-                        MovieDetailsFragment(),
+                        MovieDetailsFragment.newInstance(movieModel),
                         MovieDetailsFragment.TAG)
                 ?.addToBackStack(null)
                 ?.commit()
