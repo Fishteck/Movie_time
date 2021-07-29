@@ -42,6 +42,7 @@
         style="@style/text_roboto_400_style.12sp"
         android:layout_marginTop="@dimen/indent_10dp"
         android:maxLines="5"
+        android:minLines="5"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
         app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"

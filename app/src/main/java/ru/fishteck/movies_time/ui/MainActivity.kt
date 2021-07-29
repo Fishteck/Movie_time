@@ -39,11 +39,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.main_bottom_nav_btn_profile).setOnClickListener {
-                replaceFragment(
-                        fragment = ProfileFragment.newInstance(),
-                        fragmentTag = ProfileFragment.TAG,
-                        true
-                )
+
+            supportFragmentManager.popBackStack()
+            replaceFragment(
+                    fragment = ProfileFragment.newInstance(),
+                    fragmentTag = ProfileFragment.TAG,
+                    true
+            )
         }
 
     }

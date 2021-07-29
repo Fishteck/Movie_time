@@ -22,8 +22,7 @@ import ru.fishteck.movies_time.utils.GridItemDecoration
 class PopularMoviesFragment
     : Fragment(R.layout.fragment_popular_movies),
         PopularMoviesAdapter.MovieItemListener,
-        GenresListAdapter.GenreItemListener
-{
+        GenresListAdapter.GenreItemListener {
 
     private lateinit var moviesAdapter: PopularMoviesAdapter
     private lateinit var genresAdapter: GenresListAdapter
@@ -39,10 +38,13 @@ class PopularMoviesFragment
         initMoviesDTO()
         initGenresDTO()
         diffUtilMovies = DiffUtilMovies(moviesAdapter.getData(), moviesDTO.getMovies())
-        val diffResult : DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
         moviesAdapter.setItems(moviesDTO.getMovies())
         diffResult.dispatchUpdatesTo(moviesAdapter)
         genresAdapter.setItems(genresDTO.getGenres())
+
+        clearFragmentBackStack()
+
     }
 
     private fun initGenresDTO() {
@@ -51,7 +53,7 @@ class PopularMoviesFragment
 
     private fun initGenresRecycler() {
         genresAdapter = GenresListAdapter(this)
-        val layoutManager : LinearLayoutManager = LinearLayoutManager(context)
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.HORIZONTAL
         val recyclerView = view?.findViewById<RecyclerView>(R.id.popular_movies_genres_list)
         recyclerView?.adapter = genresAdapter
@@ -65,11 +67,19 @@ class PopularMoviesFragment
 
     private fun initMoviesRecycler() {
         moviesAdapter = PopularMoviesAdapter(this)
-        val layoutManager : GridLayoutManager = GridLayoutManager(context, 2)
+        val layoutManager: GridLayoutManager = GridLayoutManager(context, 2)
         val recyclerView = view?.findViewById<RecyclerView>(R.id.popular_movies_list)
         recyclerView?.adapter = moviesAdapter
         recyclerView?.layoutManager = layoutManager
         recyclerView?.addItemDecoration(GridItemDecoration(10, 2))
+    }
+
+    private fun clearFragmentBackStack() {
+        activity?.supportFragmentManager?.backStackEntryCount?.let {
+            repeat(it) {
+                activity?.supportFragmentManager?.popBackStack()
+            }
+        }
     }
 
     override fun onClickedMovie(movieModel: MovieModel) {
@@ -83,7 +93,6 @@ class PopularMoviesFragment
                 ?.addToBackStack(null)
                 ?.commit()
     }
-
 
 
     override fun onClickedGenre(text: String) {
