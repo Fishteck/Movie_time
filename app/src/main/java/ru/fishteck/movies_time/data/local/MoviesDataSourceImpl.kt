@@ -4,7 +4,7 @@ import ru.fishteck.movies_time.data.local.MoviesDataSource
 import ru.fishteck.movies_time.data.models.MovieModel
 
 class MoviesDataSourceImpl : MoviesDataSource {
-    override fun getMovies() = listOf(
+    override suspend fun getMovies() = listOf(
             MovieModel(
                     title = "Гнев человеческий",
                     description = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя...",
