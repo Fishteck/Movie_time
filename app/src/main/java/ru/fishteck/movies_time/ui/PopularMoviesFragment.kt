@@ -1,8 +1,8 @@
 package ru.fishteck.movies_time.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
@@ -22,12 +22,13 @@ import ru.fishteck.movies_time.data.models.MovieModel
 import ru.fishteck.movies_time.utils.DiffUtilMovies
 import ru.fishteck.movies_time.utils.GridItemDecoration
 import ru.fishteck.movies_time.utils.showToast
-import java.lang.Exception
+import java.util.*
+
 
 class PopularMoviesFragment
     : Fragment(R.layout.fragment_popular_movies),
-    PopularMoviesAdapter.MovieItemListener,
-    GenresListAdapter.GenreItemListener {
+        PopularMoviesAdapter.MovieItemListener,
+        GenresListAdapter.GenreItemListener {
 
     private lateinit var moviesAdapter: PopularMoviesAdapter
     private lateinit var genresAdapter: GenresListAdapter
@@ -35,19 +36,39 @@ class PopularMoviesFragment
     private lateinit var genresDTO: GenresDTO
     private lateinit var diffUtilMovies: DiffUtilMovies
     private lateinit var refreshLayout: SwipeRefreshLayout
+    private lateinit var coroutineExceptionHandler: CoroutineExceptionHandler
+    private var list: List<MovieModel> = mutableListOf<MovieModel>()
+    private var savedState: Bundle? = null
+    private val SAVED_STATE_TAG = "savedState"
+    private val SAVED_BUNDLE_TAG = "savedBundle"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            showToast(throwable.javaClass.simpleName)
+            refreshLayout.isRefreshing = false
+        }
 
         initMoviesRecycler()
         initGenresRecycler()
         initMoviesDTO()
         initGenresDTO()
         initRefreshLayout(view)
-
-        downloadData()
-
         genresAdapter.setItems(genresDTO.getGenres())
+
+        if (savedInstanceState != null && savedState == null) {
+            savedState = savedInstanceState.getBundle(SAVED_BUNDLE_TAG)
+        }
+
+        if (savedState != null) {
+            list = savedState?.getParcelableArrayList<MovieModel>(SAVED_STATE_TAG) as List<MovieModel>
+            moviesAdapter.setItems(list)
+        } else {
+            downloadData()
+        }
+        savedState = null
+
         clearFragmentBackStack()
     }
 
@@ -62,16 +83,17 @@ class PopularMoviesFragment
         genresDTO = GenresDTO(GenresDataSourceImpl())
     }
 
-    private fun downloadData() = lifecycleScope.launch {
-        var list: List<MovieModel> = mutableListOf<MovieModel>()
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBundle(SAVED_BUNDLE_TAG, savedState ?: saveState())
+    }
+
+    private fun downloadData() = lifecycleScope.launch(coroutineExceptionHandler) {
+
         refreshLayout.isRefreshing = true
         withContext(Dispatchers.IO) {
-            delay(4000)
-            try {
-                list = moviesDTO.getMovies()
-            } catch (ex: Exception) {
-                showToast(ex.message)
-            }
+            delay(2000)
+            list = moviesDTO.getMovies()
         }
 
         withContext(Dispatchers.Main) {
@@ -83,6 +105,16 @@ class PopularMoviesFragment
         refreshLayout.isRefreshing = false
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        savedState = saveState()
+    }
+
+    private fun saveState(): Bundle {
+        val state = Bundle()
+        state.putParcelableArrayList(SAVED_STATE_TAG, list as ArrayList<MovieModel>?)
+        return state
+    }
 
     private fun initGenresRecycler() {
         genresAdapter = GenresListAdapter(this)
@@ -118,15 +150,15 @@ class PopularMoviesFragment
     override fun onClickedMovie(movieModel: MovieModel) {
 
         activity
-            ?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(
-                R.id.main_nav_fragment,
-                MovieDetailsFragment.newInstance(movieModel),
-                MovieDetailsFragment.TAG
-            )
-            ?.addToBackStack(null)
-            ?.commit()
+                ?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(
+                        R.id.main_nav_fragment,
+                        MovieDetailsFragment.newInstance(movieModel),
+                        MovieDetailsFragment.TAG
+                )
+                ?.addToBackStack(null)
+                ?.commit()
     }
 
     override fun onClickedGenre(text: String) {
@@ -137,6 +169,5 @@ class PopularMoviesFragment
         const val TAG = "POPULAR_MOVIES_FRAGMENT_TAG"
         fun newInstance() = PopularMoviesFragment()
     }
-
 
 }
