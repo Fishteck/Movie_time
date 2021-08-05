@@ -1,55 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/background_light_gray"
     tools:context=".ui.PopularMoviesFragment">
+
     <SearchView
         android:id="@+id/popular_movies_search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/popular_movies_guideline_start_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/indent_20dp"/>
+        app:layout_constraintGuide_begin="@dimen/indent_20dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/popular_movies_guideline_end_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/indent_20dp"/>
+        app:layout_constraintGuide_end="@dimen/indent_20dp" />
+
     <TextView
         android:id="@+id/popular_movies_title_popular_now"
         style="@style/text_roboto_700_style.16sp"
-        app:layout_constraintTop_toBottomOf="@id/popular_movies_search_view"
-        app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
         android:layout_marginTop="@dimen/indent_10dp"
         android:text="@string/text_title_popular_now"
-        />
+        app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
+        app:layout_constraintTop_toBottomOf="@id/popular_movies_search_view" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popular_movies_genres_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/indent_12dp"
-        app:layout_constraintTop_toBottomOf="@id/popular_movies_title_popular_now"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popular_movies_list"
+        app:layout_constraintTop_toBottomOf="@id/popular_movies_title_popular_now" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/popular_movies_refresh_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/indent_16dp"
-        tools:listitem="@layout/item_movie"
-        app:layout_constraintTop_toBottomOf="@id/popular_movies_genres_list"
-        app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/popular_movies_guideline_end_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
+        app:layout_constraintTop_toBottomOf="@id/popular_movies_genres_list">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_movies_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_movie" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

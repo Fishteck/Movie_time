@@ -48,7 +48,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         const val TAG = "MOVIE_DETAILS_FRAGMENT_TAG"
         fun newInstance(movie : MovieModel) = MovieDetailsFragment().apply {
             arguments = Bundle().apply {
-                putSerializable("Movie", movie)
+                putParcelable("Movie", movie)
             }
         }
     }
