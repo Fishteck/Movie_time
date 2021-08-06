@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="ru.fishteck.movies_time.ui.movies.PopularMoviesFragment"
+        android:label="fragment_popular_movies"
+        tools:layout="@layout/fragment_popular_movies" >
+        <action
+            android:id="@+id/action_popularMoviesFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_popularMoviesFragment_to_profileFragment"
+            app:destination="@id/menu_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment"
+        android:label="MovieDetailsFragment" />
+    <fragment
+        android:id="@+id/menu_profile"
+        android:name="ru.fishteck.movies_time.ui.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>

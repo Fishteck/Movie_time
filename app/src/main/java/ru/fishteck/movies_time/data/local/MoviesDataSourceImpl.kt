@@ -2,8 +2,9 @@ package ru.fishteck.movies_time.data.local
 
 import ru.fishteck.movies_time.data.local.MoviesDataSource
 import ru.fishteck.movies_time.data.models.MovieModel
+import javax.inject.Inject
 
-class MoviesDataSourceImpl : MoviesDataSource {
+class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
     override suspend fun getMovies() = listOf(
             MovieModel(
                     title = "Гнев человеческий",

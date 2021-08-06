@@ -1,8 +1,9 @@
 package ru.fishteck.movies_time.data.local
 
 import ru.fishteck.movies_time.data.models.GenreModel
+import javax.inject.Inject
 
-class GenresDataSourceImpl : GenresDataSource {
+class GenresDataSourceImpl @Inject constructor() : GenresDataSource {
     override fun getGenres() = listOf(
         GenreModel("Боевик", 28),
         GenreModel("Приключения", 12),

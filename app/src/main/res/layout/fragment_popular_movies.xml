@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light_gray"
-    tools:context=".ui.PopularMoviesFragment">
+    tools:context=".ui.movies.PopularMoviesFragment">
 
     <SearchView
         android:id="@+id/popular_movies_search_view"
