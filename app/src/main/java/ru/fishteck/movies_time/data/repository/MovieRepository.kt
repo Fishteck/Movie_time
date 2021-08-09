@@ -5,5 +5,6 @@ import ru.fishteck.movies_time.data.models.MovieModel
 
 interface MovieRepository {
     suspend fun getMovies() : List<MovieModel>
+    suspend fun getDetailMovie(id : Int) : MovieModel
     fun getGenres() : List<GenreModel>
 }

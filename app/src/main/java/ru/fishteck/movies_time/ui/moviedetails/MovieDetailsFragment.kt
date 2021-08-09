@@ -8,10 +8,13 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import ru.fishteck.appComponent
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.utils.DataState
+import ru.fishteck.movies_time.utils.DiffUtilMovies
 import ru.fishteck.movies_time.utils.showToast
 import javax.inject.Inject
 
@@ -23,7 +26,6 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private lateinit var ageLimit: TextView
     private lateinit var ratingBar: RatingBar
     private var movieId: Int = 0
-
     @Inject
     lateinit var factory: MovieDetailsViewModelFactory.Factory
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModels {
@@ -33,22 +35,37 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFields(view)
+        initObserver()
+    }
 
-        val movieModel = arguments?.getParcelable<MovieModel>("MovieModel")
+    private fun initObserver() {
+        movieDetailsViewModel.movieDetailState.observe(viewLifecycleOwner, { state ->
+            when(state) {
+                is DataState.Success -> {
+                    setData(state.data)
+                }
+                is DataState.Error -> {
+                    showToast(state.message)
+                }
+                is DataState.Loading -> {
 
-        if (movieModel != null) {
+                }
+            }
+        })
+    }
+
+    private fun setData(data: MovieModel) {
+        view?.let {
             Glide
-                .with(view)
-                .load(movieModel.imageUrl)
+                .with(it)
+                .load(data.imageUrl)
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(poster)
-            title.text = movieModel.title
-            description.text = movieModel.description
-            ageLimit.text = movieModel.ageRestriction.toString() + "+"
-            ratingBar.rating = movieModel.rateScore.toFloat()
         }
-
-        showToast(movieId.toString())
+        title.text = data.title
+        description.text = data.description
+        ageLimit.text = data.ageRestriction.toString() + "+"
+        ratingBar.rating = data.rateScore.toFloat()
     }
 
     override fun onAttach(context: Context) {

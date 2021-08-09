@@ -16,6 +16,10 @@ class MovieRepositoryImpl @Inject constructor(
         return moviesDataSource.getMovies().shuffled()
     }
 
+    override suspend fun getDetailMovie(id: Int): MovieModel {
+        return moviesDataSource.getMovies().first{ it.id == id }
+    }
+
     override fun getGenres(): List<GenreModel> =
         genresDataSource.getGenres()
 }

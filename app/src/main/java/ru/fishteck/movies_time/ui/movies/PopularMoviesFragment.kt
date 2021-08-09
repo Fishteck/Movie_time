@@ -47,12 +47,11 @@ class PopularMoviesFragment
         initRefreshLayout(view)
         genresAdapter.setItems(popularMoviesViewModel.getGenres())
         initObserver()
-        popularMoviesViewModel.getMovies()
+
     }
 
     private fun initObserver() {
         popularMoviesViewModel.popularMoviesState.observe(viewLifecycleOwner, { state ->
-
             when (state) {
                 is DataState.Success -> {
                     diffUtilMovies = DiffUtilMovies(moviesAdapter.getData(), state.data)
@@ -76,6 +75,7 @@ class PopularMoviesFragment
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
+        popularMoviesViewModel.getMovies()
     }
 
     private fun initRefreshLayout(view: View) {
@@ -104,10 +104,10 @@ class PopularMoviesFragment
         recyclerView?.addItemDecoration(GridItemDecoration(10, 2))
     }
 
-    override fun onClickedMovie(movieModel: MovieModel) {
+    override fun onClickedMovie(movieId: Int) {
         findNavController().navigate(
             R.id.action_popularMoviesFragment_to_movieDetailsFragment,
-            bundleOf("MovieModel" to movieModel, MovieDetailsFragment.ARG_MOVIE_ID to movieModel.id)
+            bundleOf( MovieDetailsFragment.ARG_MOVIE_ID to movieId)
         )
 
     }

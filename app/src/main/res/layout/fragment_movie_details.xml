@@ -13,7 +13,7 @@
         android:layout_height="450dp"
         android:contentDescription="@string/description_poster_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/poster_wrath_of_man"
+        tools:src="@drawable/poster_wrath_of_man"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
                 android:layout_marginTop="@dimen/indent_36dp"
                 android:background="@drawable/text_view_genre_background"
                 android:gravity="center"
-                android:text="@string/text_genre_fighters"
+                tools:text="@string/text_genre_fighters"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/movie_details_date_of_release"
                 style="@style/text_roboto_400_style.14sp"
                 android:layout_marginStart="@dimen/indent_14dp"
-                android:text="@string/text_date_22_04_2021"
+                tools:text="@string/text_date_22_04_2021"
                 app:layout_constraintBottom_toBottomOf="@id/movie_details_genre"
                 app:layout_constraintStart_toEndOf="@id/movie_details_genre"
                 app:layout_constraintTop_toTopOf="@id/movie_details_genre" />
@@ -65,7 +65,7 @@
                 style="@style/text_roboto_500_style.20sp"
                 android:layout_marginTop="@dimen/indent_14dp"
                 android:layout_marginEnd="@dimen/indent_8dp"
-                android:text="@string/text_title_wrath_of_man"
+                tools:text="@string/text_title_wrath_of_man"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/movie_details_age_limit"
                 app:layout_constraintHorizontal_bias="0"
@@ -79,7 +79,7 @@
                 android:layout_marginEnd="@dimen/indent_20dp"
                 android:background="@drawable/text_view_circle_border"
                 android:gravity="center"
-                android:text="@string/text_age_limit_18"
+                tools:text="@string/text_age_limit_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,14 +100,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_title" />
 
-
-
             <TextView
                 android:id="@+id/movie_details_description"
                 style="@style/text_roboto_400_style.14sp"
                 android:layout_marginTop="@dimen/indent_20dp"
                 android:layout_marginEnd="@dimen/indent_20dp"
-                android:text="@string/text_description_wrath_of_man"
+                tools:text="@string/text_description_wrath_of_man"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +115,7 @@
                 android:id="@+id/movie_details_actors_text"
                 style="@style/text_roboto_500_style.16sp"
                 android:layout_marginTop="@dimen/indent_36dp"
-                android:text="@string/text_actors"
+                tools:text="@string/text_actors"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_details_description" />
 
