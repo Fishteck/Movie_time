@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -16,8 +15,8 @@ import ru.fishteck.appComponent
 import ru.fishteck.movies_time.PopularMoviesAdapter
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.adapters.GenresListAdapter
-import ru.fishteck.movies_time.data.models.MovieModel
 import ru.fishteck.movies_time.di.ViewModelFactory
+import ru.fishteck.movies_time.ui.BaseFragment
 import ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment
 import ru.fishteck.movies_time.utils.DiffUtilMovies
 import ru.fishteck.movies_time.utils.GridItemDecoration
@@ -26,7 +25,7 @@ import ru.fishteck.movies_time.utils.showToast
 import javax.inject.Inject
 
 class PopularMoviesFragment
-    : Fragment(R.layout.fragment_popular_movies),
+    : BaseFragment(R.layout.fragment_popular_movies),
     PopularMoviesAdapter.MovieItemListener,
     GenresListAdapter.GenreItemListener {
 
@@ -47,7 +46,6 @@ class PopularMoviesFragment
         initRefreshLayout(view)
         genresAdapter.setItems(popularMoviesViewModel.getGenres())
         initObserver()
-
     }
 
     private fun initObserver() {
@@ -75,6 +73,9 @@ class PopularMoviesFragment
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
+    }
+
+    override fun onFirstAttach() {
         popularMoviesViewModel.getMovies()
     }
 
@@ -109,7 +110,6 @@ class PopularMoviesFragment
             R.id.action_popularMoviesFragment_to_movieDetailsFragment,
             bundleOf( MovieDetailsFragment.ARG_MOVIE_ID to movieId)
         )
-
     }
 
     override fun onClickedGenre(text: String) {

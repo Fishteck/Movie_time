@@ -25,6 +25,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private lateinit var description: TextView
     private lateinit var ageLimit: TextView
     private lateinit var ratingBar: RatingBar
+    private lateinit var genre : TextView
     private var movieId: Int = 0
     @Inject
     lateinit var factory: MovieDetailsViewModelFactory.Factory
@@ -66,6 +67,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         description.text = data.description
         ageLimit.text = data.ageRestriction.toString() + "+"
         ratingBar.rating = data.rateScore.toFloat()
+        genre.text = data.genre
     }
 
     override fun onAttach(context: Context) {
@@ -80,6 +82,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         description = view.findViewById(R.id.movie_details_description)
         ageLimit = view.findViewById(R.id.movie_details_age_limit)
         ratingBar = view.findViewById(R.id.movie_details_rating_bar)
+        genre = view.findViewById(R.id.movie_details_genre)
     }
 
     companion object {

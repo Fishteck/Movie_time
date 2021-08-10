@@ -46,6 +46,8 @@
                 style="@style/text_roboto_400_style.10sp"
                 android:layout_marginTop="@dimen/indent_36dp"
                 android:background="@drawable/text_view_genre_background"
+                android:paddingStart="@dimen/indent_8dp"
+                android:paddingEnd="@dimen/indent_8dp"
                 android:gravity="center"
                 tools:text="@string/text_genre_fighters"
                 app:layout_constraintStart_toStartOf="parent"

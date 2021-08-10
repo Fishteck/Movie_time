@@ -12,7 +12,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 3,
                     ageRestriction = 18,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg",
-                    id = 1
+                    id = 1,
+                    genre = "Боевик"
             ),
             MovieModel(
                     title = "Мортал Комбат",
@@ -20,7 +21,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 5,
                     ageRestriction = 18,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
-                    id = 2
+                    id = 2,
+                    genre = "Боевик"
             ),
             MovieModel(
                     title = "Упс... Приплыли!",
@@ -28,7 +30,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 5,
                     ageRestriction = 6,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/546RNYy9Wi5wgboQ7EtD6i0DY5D.jpg",
-                    id = 3
+                    id = 3,
+                    genre = "Мультфильм"
             ),
             MovieModel(
                     title = "The Box",
@@ -36,7 +39,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 4,
                     ageRestriction = 12,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fq3DSw74fAodrbLiSv0BW1Ya4Ae.jpg",
-                    id = 4
+                    id = 4,
+                    genre = "Драма"
             ),
             MovieModel(
                     title = "Сага о Дэнни Эрнандесе",
@@ -44,7 +48,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 2,
                     ageRestriction = 18,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5xXGQLVtTAExHY92DHD9ewGmKxf.jpg",
-                    id = 5
+                    id = 5,
+                    genre = "Документальный"
             ),
             MovieModel(
                     title = "Пчелка Майя",
@@ -52,7 +57,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 4,
                     ageRestriction = 0,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xltjMeLlxywym14NEizl0metO10.jpg",
-                    id = 6
+                    id = 6,
+                    genre = "Мультфильм"
             ),
             MovieModel(
                     title = "Круэлла",
@@ -60,7 +66,8 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 4,
                     ageRestriction = 12,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hUfyYGP9Xf6cHF9y44JXJV3NxZM.jpg",
-                    id = 7
+                    id = 7,
+                    genre = "Комедия"
             ),
             MovieModel(
                     title = "Чёрная вдова",
@@ -68,7 +75,9 @@ class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
                     rateScore = 3,
                     ageRestriction = 16,
                     imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg",
-                    id = 8
+                    id = 8,
+                    genre = "Фантастика"
+
             ),
     )
 }
