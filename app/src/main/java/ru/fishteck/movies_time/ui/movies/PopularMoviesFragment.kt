@@ -18,18 +18,15 @@ import ru.fishteck.movies_time.adapters.GenresListAdapter
 import ru.fishteck.movies_time.di.ViewModelFactory
 import ru.fishteck.movies_time.ui.BaseFragment
 import ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment
-import ru.fishteck.movies_time.utils.DiffUtilMovies
-import ru.fishteck.movies_time.utils.GridItemDecoration
-import ru.fishteck.movies_time.utils.DataState
-import ru.fishteck.movies_time.utils.showToast
+import ru.fishteck.movies_time.utils.*
 import javax.inject.Inject
 
 class PopularMoviesFragment
     : BaseFragment(R.layout.fragment_popular_movies),
-    PopularMoviesAdapter.MovieItemListener,
-    GenresListAdapter.GenreItemListener {
+        PopularMoviesAdapter.MovieItemListener,
+        GenresListAdapter.GenreItemListener {
 
-    private lateinit var moviesAdapter: PopularMoviesAdapter
+    private val moviesAdapter: PopularMoviesAdapter = PopularMoviesAdapter(this)
     private lateinit var genresAdapter: GenresListAdapter
     private lateinit var diffUtilMovies: DiffUtilMovies
     private lateinit var refreshLayout: SwipeRefreshLayout
@@ -46,6 +43,7 @@ class PopularMoviesFragment
         initRefreshLayout(view)
         genresAdapter.setItems(popularMoviesViewModel.getGenres())
         initObserver()
+
     }
 
     private fun initObserver() {
@@ -73,6 +71,7 @@ class PopularMoviesFragment
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
+
     }
 
     override fun onFirstAttach() {
@@ -97,7 +96,6 @@ class PopularMoviesFragment
     }
 
     private fun initMoviesRecycler() {
-        moviesAdapter = PopularMoviesAdapter(this)
         val layoutManager: GridLayoutManager = GridLayoutManager(context, 2)
         val recyclerView = view?.findViewById<RecyclerView>(R.id.popular_movies_list)
         recyclerView?.adapter = moviesAdapter
@@ -107,8 +105,8 @@ class PopularMoviesFragment
 
     override fun onClickedMovie(movieId: Int) {
         findNavController().navigate(
-            R.id.action_popularMoviesFragment_to_movieDetailsFragment,
-            bundleOf( MovieDetailsFragment.ARG_MOVIE_ID to movieId)
+                R.id.action_popularMoviesFragment_to_movieDetailsFragment,
+                bundleOf(MovieDetailsFragment.ARG_MOVIE_ID to movieId)
         )
     }
 

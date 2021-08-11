@@ -6,15 +6,16 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.fishteck.appComponent
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.utils.CustomBottomSheetCallback
 import ru.fishteck.movies_time.utils.DataState
-import ru.fishteck.movies_time.utils.DiffUtilMovies
 import ru.fishteck.movies_time.utils.showToast
 import javax.inject.Inject
 
@@ -35,8 +36,15 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setBottomSheet(view)
         setFields(view)
         initObserver()
+    }
+
+    private fun setBottomSheet(view: View) {
+        val bottomSheetBehavior = BottomSheetBehavior.from<NestedScrollView>(view.findViewById(R.id.bottom_sheet_container))
+        bottomSheetBehavior.isHideable = false
+        bottomSheetBehavior.addBottomSheetCallback(CustomBottomSheetCallback())
     }
 
     private fun initObserver() {

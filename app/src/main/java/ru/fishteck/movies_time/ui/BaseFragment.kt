@@ -2,7 +2,6 @@ package ru.fishteck.movies_time.ui
 
 import android.content.Context
 import androidx.fragment.app.Fragment
-import ru.fishteck.movies_time.utils.showToast
 
 abstract class BaseFragment(layout: Int) : Fragment(layout) {
 
@@ -10,6 +9,8 @@ abstract class BaseFragment(layout: Int) : Fragment(layout) {
         super.onAttach(context)
         numberOfAttachments++
         if ( numberOfAttachments == 1) {
+            onFirstAttach()
+        } else if (this.isHidden) {
             onFirstAttach()
         }
     }

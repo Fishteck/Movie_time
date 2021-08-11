@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/movie_details_poster"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="350dp"
         android:contentDescription="@string/description_poster_image"
         android:scaleType="centerCrop"
         tools:src="@drawable/poster_wrath_of_man"
@@ -18,180 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/movie_details_guideline_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="225dp" />
+    <include layout="@layout/layout_bottom_sheet"/>
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movie_details_guideline_first">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/movie_details_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background"
-            android:paddingStart="@dimen/indent_20dp"
-            android:paddingEnd="0dp">
-
-            <TextView
-                android:id="@+id/movie_details_genre"
-                style="@style/text_roboto_400_style.10sp"
-                android:layout_marginTop="@dimen/indent_36dp"
-                android:background="@drawable/text_view_genre_background"
-                android:paddingStart="@dimen/indent_8dp"
-                android:paddingEnd="@dimen/indent_8dp"
-                android:gravity="center"
-                tools:text="@string/text_genre_fighters"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/movie_details_date_of_release"
-                style="@style/text_roboto_400_style.14sp"
-                android:layout_marginStart="@dimen/indent_14dp"
-                tools:text="@string/text_date_22_04_2021"
-                app:layout_constraintBottom_toBottomOf="@id/movie_details_genre"
-                app:layout_constraintStart_toEndOf="@id/movie_details_genre"
-                app:layout_constraintTop_toTopOf="@id/movie_details_genre" />
-
-            <TextView
-                android:id="@+id/movie_details_title"
-                style="@style/text_roboto_500_style.20sp"
-                android:layout_marginTop="@dimen/indent_14dp"
-                android:layout_marginEnd="@dimen/indent_8dp"
-                tools:text="@string/text_title_wrath_of_man"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintEnd_toStartOf="@id/movie_details_age_limit"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_details_genre" />
-
-            <TextView
-                android:id="@+id/movie_details_age_limit"
-                style="@style/text_roboto_400_style.14sp"
-                android:layout_marginTop="@dimen/indent_42dp"
-                android:layout_marginEnd="@dimen/indent_20dp"
-                android:background="@drawable/text_view_circle_border"
-                android:gravity="center"
-                tools:text="@string/text_age_limit_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <RatingBar
-                android:id="@+id/movie_details_rating_bar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:progressTint="@android:color/black"
-                android:progressBackgroundTint="@android:color/black"
-                android:secondaryProgressTint="@android:color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/indent_8dp"
-                android:layout_marginEnd="4dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_details_title" />
-
-            <TextView
-                android:id="@+id/movie_details_description"
-                style="@style/text_roboto_400_style.14sp"
-                android:layout_marginTop="@dimen/indent_20dp"
-                android:layout_marginEnd="@dimen/indent_20dp"
-                tools:text="@string/text_description_wrath_of_man"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_details_rating_bar" />
-
-            <TextView
-                android:id="@+id/movie_details_actors_text"
-                style="@style/text_roboto_500_style.16sp"
-                android:layout_marginTop="@dimen/indent_36dp"
-                tools:text="@string/text_actors"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_details_description" />
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/indent_16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_details_actors_text">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/indent_42dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/first"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/statham"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="@dimen/indent_12dp"
-                        android:text="@string/text_actor_statham"
-                        app:layout_constraintStart_toStartOf="@id/first"
-                        app:layout_constraintTop_toBottomOf="@id/first" />
-
-                    <ImageView
-                        android:id="@+id/second"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="@dimen/indent_10dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mccallany"
-                        app:layout_constraintStart_toEndOf="@id/first"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="@dimen/indent_12dp"
-                        android:text="@string/text_actor_mccallany"
-                        app:layout_constraintStart_toStartOf="@id/second"
-                        app:layout_constraintTop_toBottomOf="@id/second" />
-
-                    <ImageView
-                        android:id="@+id/third"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="@dimen/indent_10dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/statham"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/second"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        style="@style/text_roboto_700_style.12sp"
-                        android:layout_marginTop="@dimen/indent_12dp"
-                        android:text="@string/text_actor_statham"
-                        app:layout_constraintStart_toStartOf="@id/third"
-                        app:layout_constraintTop_toBottomOf="@id/third" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </HorizontalScrollView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
