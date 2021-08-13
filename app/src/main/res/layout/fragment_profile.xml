@@ -1,14 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/text_not_available_now"
-        style="@style/text_roboto_700_style.16sp"/>
+    android:background="@color/background_light_gray">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/profile_guideline_start_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/indent_20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/profile_guideline_end_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/indent_20dp" />
+
+        <TextView
+            android:id="@+id/profile_user_name"
+            style="@style/text_roboto_500_style.20sp"
+            android:layout_marginEnd="@dimen/indent_16dp"
+            android:text="@string/profile_user_name_plug"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/profile_user_email"
+            app:layout_constraintEnd_toStartOf="@id/profile_user_avatar"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toTopOf="@id/profile_user_avatar"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/profile_user_email"
+            style="@style/text_roboto_400_style.14sp"
+            android:text="@string/profile_user_mail_plug"
+            app:layout_constraintBottom_toBottomOf="@id/profile_user_avatar"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_name" />
+
+        <ImageView
+            android:id="@+id/profile_user_avatar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="@dimen/indent_42dp"
+            android:contentDescription="@string/avatar_photo_description"
+            android:src="@drawable/avatar_plug"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_interests_title"
+            style="@style/text_roboto_500_style.16sp"
+            android:layout_marginTop="@dimen/indent_40dp"
+            android:text="@string/profile_interests_title"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_avatar" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/profile_interests_genres_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="profile_genre_first,profile_genre_second,profile_genre_third"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_interests_title"
+            android:layout_marginTop="@dimen/indent_14dp"
+            app:flow_horizontalGap="@dimen/indent_8dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_verticalGap="@dimen/indent_8dp"
+            app:flow_verticalStyle="packed"
+            app:flow_horizontalBias="0"
+            app:flow_wrapMode="chain"
+            />
+
+        <TextView
+            android:id="@+id/profile_genre_first"
+            style="@style/text_roboto_400_style.10sp"
+            android:background="@drawable/text_view_genre_background"
+            android:gravity="center"
+            android:text="@string/text_genre_fighters"
+            android:paddingStart="@dimen/indent_8dp"
+            android:paddingEnd="@dimen/indent_8dp"
+             />
+        <TextView
+            android:id="@+id/profile_genre_second"
+            style="@style/text_roboto_400_style.10sp"
+            android:background="@drawable/text_view_genre_background"
+            android:gravity="center"
+            android:text="@string/text_genre_dramas"
+            android:paddingStart="@dimen/indent_8dp"
+            android:paddingEnd="@dimen/indent_8dp"
+            />
+        <TextView
+            android:id="@+id/profile_genre_third"
+            style="@style/text_roboto_400_style.10sp"
+            android:background="@drawable/text_view_genre_background"
+            android:gravity="center"
+            android:text="@string/text_genre_comedy"
+            android:paddingStart="@dimen/indent_8dp"
+            android:paddingEnd="@dimen/indent_8dp"
+            />
+
+        <TextView
+            android:id="@+id/profile_user_data_title"
+            style="@style/text_roboto_500_style.16sp"
+            android:layout_marginTop="@dimen/indent_40dp"
+            android:text="@string/profile_user_data_title"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_interests_genres_list" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profile_edit_user_name_layout"
+            style="@style/text_input_layout_style"
+            android:hint="@string/edit_text_hint_name"
+            app:boxBackgroundColor="@color/background_light_gray"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_data_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_edit_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profile_edit_user_password_layout"
+            style="@style/text_input_layout_style"
+            android:hint="@string/edit_text_hint_password"
+            app:boxBackgroundColor="@color/background_light_gray"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_user_name_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_edit_user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profile_edit_user_email_layout"
+            style="@style/text_input_layout_style"
+            android:hint="@string/edit_text_hint_email"
+            app:boxBackgroundColor="@color/background_light_gray"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_user_password_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_edit_user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profile_edit_user_phone_layout"
+            style="@style/text_input_layout_style"
+            android:hint="@string/edit_text_hint_phone"
+            app:boxBackgroundColor="@color/background_light_gray"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_user_email_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_edit_user_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/profile_user_setting_title"
+            style="@style/text_roboto_500_style.16sp"
+            android:layout_marginTop="@dimen/indent_40dp"
+            android:layout_marginBottom="@dimen/indent_10dp"
+            android:text="@string/profile_user_settings_title"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_user_phone_layout" />
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_notification_n_sounds"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_setting_title">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_notifications_and_sounds" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_сonfidentiality"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_notification_n_sounds">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_confidentiality" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_theme"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_сonfidentiality">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_theme" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_language"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_theme">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_language" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_data_and_memory"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_language">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_data_and_memory" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/profile_user_setting_app"
+            style="@style/text_roboto_500_style.16sp"
+            android:layout_marginTop="@dimen/indent_40dp"
+            android:layout_marginBottom="@dimen/indent_10dp"
+            android:text="@string/profile_user_app_title"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_data_and_memory" />
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_ask_question"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_setting_app">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_ask_question" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_settings_btn_report_a_problem"
+            style="@style/profile_settings_btn"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_ask_question">
+
+            <TextView
+                style="@style/text_roboto_400_style.14sp.profile_settings"
+                android:text="@string/profile_settings_report_a_problem" />
+
+            <View style="@style/profile_settings_arrow" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/profile_settings_btn_exit"
+            style="@style/text_roboto_500_style.16sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/indent_40dp"
+            android:layout_marginBottom="@dimen/indent_40dp"
+            android:backgroundTint="#0C000000"
+            android:elevation="0dp"
+            android:paddingTop="@dimen/indent_10dp"
+            android:paddingBottom="@dimen/indent_10dp"
+            android:stateListAnimator="@null"
+            android:text="@string/profile_setting_exit"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
+            app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
+            app:layout_constraintTop_toBottomOf="@id/profile_settings_btn_report_a_problem" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

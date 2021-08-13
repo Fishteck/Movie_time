@@ -15,7 +15,7 @@ import ru.fishteck.movies_time.data.models.MovieModel
 class PopularMoviesAdapter(private val listener: MovieItemListener) : RecyclerView.Adapter<PopularMoviesHolder>() {
 
     interface MovieItemListener {
-        fun onClickedMovie(movieModel: MovieModel)
+        fun onClickedMovie(movieId: Int)
     }
 
     private val items = mutableListOf<MovieModel>()
@@ -66,7 +66,7 @@ class PopularMoviesHolder ( private val view : View)
         ageLimit.text = item.ageRestriction.toString() + "+"
         ratingBar.rating = item.rateScore.toFloat()
         view.setOnClickListener {
-            listener.onClickedMovie(movieModel = item)
+            listener.onClickedMovie(movieId = item.id)
         }
     }
 

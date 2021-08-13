@@ -6,9 +6,11 @@
         <item name="android:layout_height">16dp</item>
         <item name="android:layout_marginEnd">2dp</item>
     </style>
+
     <style name="filed_star_style.filed">
         <item name="android:background">@drawable/ic_star_filed</item>
     </style>
+
     <style name="filed_star_style.border">
         <item name="android:background">@drawable/ic_star_border</item>
     </style>
@@ -19,16 +21,27 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="text_roboto_400_style.10sp">
 
         <item name="android:textSize">@dimen/text_size_10sp</item>
     </style>
+
     <style name="text_roboto_400_style.12sp">
         <item name="android:textSize">@dimen/text_size_12sp</item>
     </style>
+
     <style name="text_roboto_400_style.14sp">
         <item name="android:textSize">@dimen/text_size_14sp</item>
     </style>
+
+    <style name="text_roboto_400_style.14sp.profile_settings">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_weight">10</item>
+    </style>
+
     <style name="text_roboto_400_style.8sp">
         <item name="android:textSize">@dimen/text_size_14sp</item>
     </style>
@@ -39,12 +52,15 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="text_roboto_500_style.20sp">
         <item name="android:textSize">@dimen/text_size_20sp</item>
     </style>
+
     <style name="text_roboto_500_style.16sp">
-        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
     </style>
+
     <style name="text_roboto_500_style.14sp">
         <item name="android:textSize">@dimen/text_size_14sp</item>
     </style>
@@ -55,11 +71,48 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="text_roboto_700_style.12sp">
         <item name="android:textSize">@dimen/text_size_12sp</item>
     </style>
+
     <style name="text_roboto_700_style.16sp">
         <item name="android:textSize">@dimen/text_size_16sp</item>
     </style>
 
+    <style name="CustomTextInputLayout" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="boxStrokeColor">@color/edit_text_grey</item>
+        <item name="android:textColorHint">@color/edit_text_grey</item>
+        <item name="hintTextColor">@color/edit_text_grey</item>
+        <item name="colorControlActivated">@color/edit_text_grey</item>
+        <item name="colorControlHighlight">@color/edit_text_grey</item>
+    </style>
+
+    <style name="text_input_layout_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/indent_16dp</item>
+        <item name="android:theme">@style/CustomTextInputLayout</item>
+    </style>
+
+    <style name="profile_settings_arrow">
+        <item name="android:layout_width">15dp</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:background">@drawable/icon_navigate_next_24</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+
+    <style name="profile_settings_btn">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/indent_14dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">10</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/ripple_effect</item>
+    </style>
 </resources>
