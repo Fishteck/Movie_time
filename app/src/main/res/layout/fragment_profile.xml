@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_light_gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/profile_guideline_start_vertical"
@@ -120,7 +122,7 @@
             android:id="@+id/profile_edit_user_name_layout"
             style="@style/text_input_layout_style"
             android:hint="@string/edit_text_hint_name"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/background_light_gray"
             app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
             app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
             app:layout_constraintTop_toBottomOf="@id/profile_user_data_title">
@@ -136,7 +138,7 @@
             android:id="@+id/profile_edit_user_password_layout"
             style="@style/text_input_layout_style"
             android:hint="@string/edit_text_hint_password"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/background_light_gray"
             app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
             app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
             app:layout_constraintTop_toBottomOf="@id/profile_edit_user_name_layout">
@@ -152,7 +154,7 @@
             android:id="@+id/profile_edit_user_email_layout"
             style="@style/text_input_layout_style"
             android:hint="@string/edit_text_hint_email"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/background_light_gray"
             app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
             app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
             app:layout_constraintTop_toBottomOf="@id/profile_edit_user_password_layout">
@@ -168,7 +170,7 @@
             android:id="@+id/profile_edit_user_phone_layout"
             style="@style/text_input_layout_style"
             android:hint="@string/edit_text_hint_phone"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/background_light_gray"
             app:layout_constraintEnd_toStartOf="@id/profile_guideline_end_vertical"
             app:layout_constraintStart_toEndOf="@id/profile_guideline_start_vertical"
             app:layout_constraintTop_toBottomOf="@id/profile_edit_user_email_layout">

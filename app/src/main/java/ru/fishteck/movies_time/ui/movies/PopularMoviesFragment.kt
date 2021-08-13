@@ -4,8 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,14 +16,14 @@ import ru.fishteck.appComponent
 import ru.fishteck.movies_time.PopularMoviesAdapter
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.adapters.GenresListAdapter
+import ru.fishteck.movies_time.data.models.MovieModel
 import ru.fishteck.movies_time.di.ViewModelFactory
-import ru.fishteck.movies_time.ui.BaseFragment
 import ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment
 import ru.fishteck.movies_time.utils.*
 import javax.inject.Inject
 
 class PopularMoviesFragment
-    : BaseFragment(R.layout.fragment_popular_movies),
+    : Fragment(R.layout.fragment_popular_movies),
         PopularMoviesAdapter.MovieItemListener,
         GenresListAdapter.GenreItemListener {
 
@@ -33,7 +34,9 @@ class PopularMoviesFragment
 
     @Inject
     lateinit var factory: ViewModelFactory
-    private val popularMoviesViewModel: PopularMoviesViewModel by viewModels { factory }
+    private val popularMoviesViewModel:
+            PopularMoviesViewModel by navGraphViewModels<PopularMoviesViewModel>(R.id.menu_home)
+    { factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,17 +46,20 @@ class PopularMoviesFragment
         initRefreshLayout(view)
         genresAdapter.setItems(popularMoviesViewModel.getGenres())
         initObserver()
+    }
 
+    private fun setRecyclerData(value: List<MovieModel>) {
+        diffUtilMovies = DiffUtilMovies(moviesAdapter.getData(), value)
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
+        moviesAdapter.setItems(value)
+        diffResult.dispatchUpdatesTo(moviesAdapter)
     }
 
     private fun initObserver() {
         popularMoviesViewModel.popularMoviesState.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is DataState.Success -> {
-                    diffUtilMovies = DiffUtilMovies(moviesAdapter.getData(), state.data)
-                    val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
-                    moviesAdapter.setItems(state.data)
-                    diffResult.dispatchUpdatesTo(moviesAdapter)
+                    setRecyclerData(state.data)
                     refreshLayout.isRefreshing = false
                 }
                 is DataState.Error -> {
@@ -64,18 +70,12 @@ class PopularMoviesFragment
                     refreshLayout.isRefreshing = true
                 }
             }
-
         })
     }
 
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
-
-    }
-
-    override fun onFirstAttach() {
-        popularMoviesViewModel.getMovies()
     }
 
     private fun initRefreshLayout(view: View) {
@@ -113,5 +113,6 @@ class PopularMoviesFragment
     override fun onClickedGenre(text: String) {
         showToast(text)
     }
+
 
 }

@@ -1,6 +1,5 @@
 package ru.fishteck.movies_time.ui.moviedetails
 
-import android.util.Log
 import androidx.lifecycle.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -9,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import ru.fishteck.movies_time.data.models.MovieModel
 import ru.fishteck.movies_time.data.repository.MovieRepository
 import ru.fishteck.movies_time.utils.DataState
-
 
 class MovieDetailsViewModel(
     private val movieId: Int,
