@@ -25,13 +25,24 @@ class PopularMoviesViewModel @Inject constructor(
         getMovies()
     }
 
-    fun getMovies() = viewModelScope.launch(coroutineExceptionHandler) {
+    private fun getMovies() = viewModelScope.launch(coroutineExceptionHandler) {
 
         _popularMoviesState.postValue(DataState.Loading)
 
         withContext(Dispatchers.IO) {
-            _popularMoviesState.postValue(DataState.Success(repository.getMovies()))
+            _popularMoviesState.postValue(DataState.Success(repository.getLocalMovies()))
         }
+    }
+
+    fun updateMovies() = viewModelScope.launch(coroutineExceptionHandler) {
+
+        _popularMoviesState.postValue(DataState.Loading)
+        withContext(Dispatchers.IO) {
+            val remoteData = repository.getMovies()
+            _popularMoviesState.postValue(DataState.Success(remoteData))
+            repository.addAllMovies(remoteData)
+        }
+
     }
 
     fun getGenres() = repository.getGenres()

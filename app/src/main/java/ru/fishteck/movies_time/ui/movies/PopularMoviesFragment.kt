@@ -81,7 +81,7 @@ class PopularMoviesFragment
     private fun initRefreshLayout(view: View) {
         refreshLayout = view.findViewById(R.id.popular_movies_refresh_layout)
         refreshLayout.setOnRefreshListener {
-            popularMoviesViewModel.getMovies()
+            popularMoviesViewModel.updateMovies()
         }
     }
 

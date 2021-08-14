@@ -1,10 +1,9 @@
-package ru.fishteck.movies_time.data.local
+package ru.fishteck.movies_time.data.remote
 
-import ru.fishteck.movies_time.data.local.MoviesDataSource
 import ru.fishteck.movies_time.data.models.MovieModel
 import javax.inject.Inject
 
-class MoviesDataSourceImpl @Inject constructor()  : MoviesDataSource {
+class MoviesRemoteDataSourceImpl @Inject constructor()  : MoviesRemoteDataSource {
     override suspend fun getMovies() = listOf(
             MovieModel(
                     title = "Гнев человеческий",
