@@ -27,15 +27,16 @@ class PopularMoviesViewModel @Inject constructor(
 
     private fun getMovies() = viewModelScope.launch(coroutineExceptionHandler) {
 
-        _popularMoviesState.postValue(DataState.Loading)
-
         withContext(Dispatchers.IO) {
-            _popularMoviesState.postValue(DataState.Success(repository.getLocalMovies()))
+            if (repository.getLocalMovies().isEmpty()) {
+                updateMovies()
+            } else {
+                _popularMoviesState.postValue(DataState.Success(repository.getLocalMovies()))
+            }
         }
     }
 
     fun updateMovies() = viewModelScope.launch(coroutineExceptionHandler) {
-
         _popularMoviesState.postValue(DataState.Loading)
         withContext(Dispatchers.IO) {
             val remoteData = repository.getMovies()

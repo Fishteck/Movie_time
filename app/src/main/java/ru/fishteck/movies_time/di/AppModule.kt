@@ -6,15 +6,17 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import ru.fishteck.MovieApp
+import ru.fishteck.movies_time.utils.ApplicationContext
+import ru.fishteck.movies_time.utils.ViewModelFactory
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Module(includes = [AppBindModule::class, MovieLocalModule::class])
-class AppModule(private val application: MovieApp) {
-
-    @Provides
-    @Singleton
-    fun provideMovieApp() : MovieApp = application
+@Module(includes = [
+    AppBindModule::class,
+    MovieLocalModule::class,
+    RepositoryBindModule::class
+])
+class AppModule() {
 
     @Provides
     @ApplicationContext

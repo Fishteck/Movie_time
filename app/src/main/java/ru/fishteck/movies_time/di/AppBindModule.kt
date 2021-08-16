@@ -12,19 +12,13 @@ import ru.fishteck.movies_time.data.repository.MovieRepositoryImpl
 import ru.fishteck.movies_time.data.repository.ProfileRepository
 import ru.fishteck.movies_time.data.repository.ProfileRepositoryImpl
 import ru.fishteck.movies_time.ui.movies.PopularMoviesViewModel
+import ru.fishteck.movies_time.ui.profile.ProfileViewModel
+import ru.fishteck.movies_time.utils.ViewModelKey
 
 
 @Module
 interface AppBindModule {
-    @Binds
-    fun bindMovieRepositoryImp_to_MovieRepository(
-        movieRepositoryImpl: MovieRepositoryImpl
-    ): MovieRepository
 
-    @Binds
-    fun bindProfileRepositoryImpl_to_ProfileRepository(
-        profileRepositoryImpl: ProfileRepositoryImpl
-    ): ProfileRepository
 
     @Binds
     fun bindProfileLocalDataSourceImpl_to_ProfileLocalDataSource(
@@ -51,5 +45,9 @@ interface AppBindModule {
     @ViewModelKey(PopularMoviesViewModel::class)
     fun bindPopularMoviesViewModel(popularMoviesViewModel: PopularMoviesViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    fun bindProfileMoviesViewModel(profileViewModel: ProfileViewModel): ViewModel
 
 }

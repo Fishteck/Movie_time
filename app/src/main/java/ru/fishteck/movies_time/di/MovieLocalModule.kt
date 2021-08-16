@@ -11,10 +11,11 @@ import ru.fishteck.movies_time.data.local.MovieDatabase
 import ru.fishteck.movies_time.data.local.MoviesDAO
 import ru.fishteck.movies_time.data.local.ProfileDAO
 import ru.fishteck.movies_time.data.local.ProfileDatabase
+import ru.fishteck.movies_time.utils.ApplicationContext
 import javax.inject.Singleton
 
 @Module
-object MovieLocalModule {
+class MovieLocalModule {
 
     @Provides
     @Singleton
@@ -40,7 +41,6 @@ object MovieLocalModule {
             ProfileDatabase::class.java,
             ProfileDatabase.PROFILE_DATABASE_NAME
         )
-            .fallbackToDestructiveMigration()
             .build()
 
     @Provides

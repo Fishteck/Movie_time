@@ -8,8 +8,8 @@ data class ProfileModel(
      val userName : String,
      val userEmail : String,
      val interest : List<String>,
-     val mobileNumber : String,
-    @PrimaryKey(autoGenerate = true)
+     val mobileNumber : String? = null,
+    @PrimaryKey(autoGenerate = false)
      val id : Int
 ) {
 

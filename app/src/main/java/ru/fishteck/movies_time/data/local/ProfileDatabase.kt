@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import ru.fishteck.movies_time.data.models.ProfileModel
 import ru.fishteck.movies_time.utils.Converters
 
-@Database(entities = [ProfileModel::class], version = 1, exportSchema = false)
+@Database(entities = [ProfileModel::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ProfileDatabase : RoomDatabase(){
     abstract fun getProfilesDAO() : ProfileDAO
