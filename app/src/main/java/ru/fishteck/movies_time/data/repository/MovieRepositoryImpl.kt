@@ -25,8 +25,15 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getGenres(): List<GenreModel> =
         genresDataSource.getGenres()
 
-    override suspend fun getLocalMovies(): List<MovieModel> =
-        movieLocalDataSource.getMovies()
+    override suspend fun getLocalMovies(): List<MovieModel> {
+        return if (movieLocalDataSource.getMovies().isEmpty()) {
+            movieLocalDataSource.addAllMovies(moviesRemoteDataSource.getMovies())
+            movieLocalDataSource.getMovies()
+        } else {
+            movieLocalDataSource.getMovies()
+        }
+    }
+
 
     override suspend fun addAllMovies(movies: List<MovieModel>) {
         movieLocalDataSource.addAllMovies(movies)

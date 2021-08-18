@@ -26,7 +26,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     lateinit var factory: ViewModelFactory
     private val profileViewModel: ProfileViewModel
             by navGraphViewModels<ProfileViewModel>(R.id.menu_profile) { factory }
-    var isAuth = false
+    private var isAuth = false
     private lateinit var loggedSection: ConstraintLayout
     private lateinit var notLoggedSection: ConstraintLayout
     private lateinit var exitBtn: Button
@@ -36,44 +36,38 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var editFieldPassword: TextInputEditText
     private lateinit var editFieldEmail: TextInputEditText
     private lateinit var editFieldPhoneNumber: TextInputEditText
-    private var profile_id: Int? = null
+    private var profileId: Int? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFields(view)
 
-
-
         if (isAuth) {
             loggedSection.visibility = View.VISIBLE
             notLoggedSection.visibility = View.GONE
             exitBtn.text = EXIT
-            profile_id?.let { profileViewModel.loadProfile(it) }
-            showToast(profile_id.toString())
+            profileId?.let { profileViewModel.loadProfile(it) }
         } else {
             loggedSection.visibility = View.GONE
             notLoggedSection.visibility = View.VISIBLE
             exitBtn.text = ENTER
         }
 
-
         exitBtn.setOnClickListener {
             if (exitBtn.text.equals(ENTER)) {
                 findNavController().navigate(
-                    R.id.action_menu_profile_to_logInFragment
+                        R.id.action_menu_profile_to_logInFragment
                 )
             } else {
                 isAuth = false
-                profile_id?.let { it1 -> profileViewModel.deleteProfileById(it1) }
+                profileId?.let { it1 -> profileViewModel.deleteProfileById(it1) }
                 findNavController().navigate(R.id.action_menu_profile_self)
                 it.context.applicationContext.encPrefs.edit().clear().apply()
             }
         }
 
         initObserver()
-
-
     }
 
     override fun onAttach(context: Context) {
@@ -85,11 +79,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (id != null) {
             context.encPrefs.edit().putInt(PREF_KEY, id as Int).apply()
             isAuth = true
-            profile_id = id
+            profileId = id
         } else {
             if (context.encPrefs.contains(PREF_KEY)) {
                 isAuth = true
-                profile_id = context.encPrefs.getInt(PREF_KEY, 0)
+                profileId = context.encPrefs.getInt(PREF_KEY, 0)
             }
         }
     }
@@ -98,7 +92,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         profileViewModel.profileState.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is ProfileState.Success -> {
-                    if (state.data != null) setInfo(state.data)
+                    setInfo(state.data)
                 }
                 is ProfileState.Error -> {
                     showToast(state.message)

@@ -1,16 +1,12 @@
 package ru.fishteck.movies_time.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import ru.fishteck.MovieApp
-import ru.fishteck.appComponent
 import ru.fishteck.movies_time.data.local.MovieDatabase
 import ru.fishteck.movies_time.data.local.MoviesDAO
 import ru.fishteck.movies_time.data.local.ProfileDAO
-import ru.fishteck.movies_time.data.local.ProfileDatabase
 import ru.fishteck.movies_time.utils.ApplicationContext
 import javax.inject.Singleton
 
@@ -35,16 +31,6 @@ class MovieLocalModule {
 
     @Provides
     @Singleton
-    fun providesProfileDatabase(@ApplicationContext context: Context): ProfileDatabase =
-        Room.databaseBuilder(
-            context,
-            ProfileDatabase::class.java,
-            ProfileDatabase.PROFILE_DATABASE_NAME
-        )
-            .build()
-
-    @Provides
-    @Singleton
-    fun provideProfileDAO(database: ProfileDatabase): ProfileDAO =
+    fun provideProfileDAO(database: MovieDatabase): ProfileDAO =
         database.getProfilesDAO()
 }
