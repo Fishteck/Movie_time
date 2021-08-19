@@ -46,9 +46,13 @@ class LogInFragment : Fragment(R.layout.fragment_log_in) {
                 val profile = ProfileModel(
                     userName = mName,
                     userEmail = mEmail,
-                    mobileNumber = "8-999-999-99-99",
+                    mobileNumber = getString(R.string.profile_user_phone_plug),
                     id = Random.nextInt(0, 1000),
-                    interest = listOf("боевики", "драмы", "комедии")
+                    interest = listOf(
+                            getString(R.string.text_genre_fighters),
+                            getString(R.string.text_genre_dramas),
+                            getString(R.string.text_genre_comedy)
+                            )
                 )
                 profileViewModel.addProfile(profile = profile)
 

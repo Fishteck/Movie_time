@@ -14,6 +14,7 @@
     <string name="text_title_popular_now">Популярное сейчас</string>
     <string name="text_not_available_now">Not available now</string>
     <string name="profile_user_name_plug">Константин</string>
+    <string name="profile_user_phone_plug">8-999-999-99-99</string>
     <string name="profile_user_mail_plug">konst.89@mail.com</string>
     <string name="avatar_photo_description">Avatar photo</string>
     <string name="profile_interests_title">Интересы</string>

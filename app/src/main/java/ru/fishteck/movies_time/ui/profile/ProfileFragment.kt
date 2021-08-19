@@ -46,16 +46,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (isAuth) {
             loggedSection.visibility = View.VISIBLE
             notLoggedSection.visibility = View.GONE
-            exitBtn.text = EXIT
+            exitBtn.text = getString(R.string.profile_setting_exit)
             profileId?.let { profileViewModel.loadProfile(it) }
         } else {
             loggedSection.visibility = View.GONE
             notLoggedSection.visibility = View.VISIBLE
-            exitBtn.text = ENTER
+            exitBtn.text = getString(R.string.profile_setting_enter)
         }
 
         exitBtn.setOnClickListener {
-            if (exitBtn.text.equals(ENTER)) {
+            if (exitBtn.text.equals(getString(R.string.profile_setting_enter))) {
                 findNavController().navigate(
                         R.id.action_menu_profile_to_logInFragment
                 )
@@ -120,7 +120,5 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     companion object {
         const val PREF_KEY = "profile_id"
-        const val EXIT = "Выйти"
-        const val ENTER = "Войти"
     }
 }
