@@ -23,6 +23,21 @@
         android:label="MovieDetailsFragment" />
     <fragment
         android:id="@+id/menu_profile"
-        android:name="ru.fishteck.movies_time.ui.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:name="ru.fishteck.movies_time.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_menu_profile_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_menu_profile_self"
+            app:destination="@id/menu_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="ru.fishteck.movies_time.ui.profile.LogInFragment"
+        android:label="LogInFragment" >
+        <action
+            android:id="@+id/action_logInFragment_to_menu_profile"
+            app:destination="@id/menu_profile" />
+    </fragment>
 </navigation>

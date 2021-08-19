@@ -10,12 +10,14 @@ android {
 
     defaultConfig {
         applicationId "ru.fishteck.movies_time"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "MOVIE_API_KEY", "\"8486e323ff1d52005b54543dda2d8ec4\""
     }
 
     buildTypes {
@@ -74,4 +76,16 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //Room
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+
+    //Security
+    implementation "androidx.security:security-crypto:1.1.0-alpha03"
+    implementation "androidx.security:security-identity-credential:1.0.0-alpha02"
+
 }

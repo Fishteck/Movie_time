@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_light_gray">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/log_in_guideline_start_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/indent_20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/log_in_guideline_end_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/indent_20dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/log_in_edit_user_name_layout"
+        style="@style/text_input_layout_style"
+        android:hint="@string/edit_text_hint_name"
+        android:layout_marginTop="@dimen/indent_42dp"
+        app:boxBackgroundColor="@color/background_light_gray"
+        app:layout_constraintStart_toEndOf="@id/log_in_guideline_start_vertical"
+        app:layout_constraintEnd_toStartOf="@id/log_in_guideline_end_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/log_in_edit_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/log_in_edit_user_password_layout"
+        style="@style/text_input_layout_style"
+        android:hint="@string/edit_text_hint_password"
+        app:boxBackgroundColor="@color/background_light_gray"
+        app:layout_constraintStart_toEndOf="@id/log_in_guideline_start_vertical"
+        app:layout_constraintEnd_toStartOf="@id/log_in_guideline_end_vertical"
+        app:layout_constraintTop_toBottomOf="@id/log_in_edit_user_name_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/log_in_edit_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/log_in_edit_user_email_layout"
+        style="@style/text_input_layout_style"
+        android:hint="@string/edit_text_hint_email"
+        app:boxBackgroundColor="@color/background_light_gray"
+        app:layout_constraintStart_toEndOf="@id/log_in_guideline_start_vertical"
+        app:layout_constraintEnd_toStartOf="@id/log_in_guideline_end_vertical"
+        app:layout_constraintTop_toBottomOf="@id/log_in_edit_user_password_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/log_in_edit_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/log_in_settings_btn_enter"
+        style="@style/text_roboto_500_style.16sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/indent_40dp"
+        android:layout_marginBottom="@dimen/indent_40dp"
+        android:backgroundTint="#0C000000"
+        android:elevation="0dp"
+        android:paddingTop="@dimen/indent_10dp"
+        android:paddingBottom="@dimen/indent_10dp"
+        android:stateListAnimator="@null"
+        android:text="@string/profile_setting_enter"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toEndOf="@id/log_in_guideline_start_vertical"
+        app:layout_constraintEnd_toStartOf="@id/log_in_guideline_end_vertical"
+        app:layout_constraintTop_toBottomOf="@id/log_in_edit_user_email_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

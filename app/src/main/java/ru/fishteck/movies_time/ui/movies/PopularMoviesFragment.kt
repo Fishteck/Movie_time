@@ -17,7 +17,7 @@ import ru.fishteck.movies_time.PopularMoviesAdapter
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.adapters.GenresListAdapter
 import ru.fishteck.movies_time.data.models.MovieModel
-import ru.fishteck.movies_time.di.ViewModelFactory
+import ru.fishteck.movies_time.utils.ViewModelFactory
 import ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment
 import ru.fishteck.movies_time.utils.*
 import javax.inject.Inject
@@ -81,7 +81,7 @@ class PopularMoviesFragment
     private fun initRefreshLayout(view: View) {
         refreshLayout = view.findViewById(R.id.popular_movies_refresh_layout)
         refreshLayout.setOnRefreshListener {
-            popularMoviesViewModel.getMovies()
+            popularMoviesViewModel.updateMovies()
         }
     }
 

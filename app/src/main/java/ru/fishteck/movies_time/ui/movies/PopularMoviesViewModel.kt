@@ -25,10 +25,14 @@ class PopularMoviesViewModel @Inject constructor(
         getMovies()
     }
 
-    fun getMovies() = viewModelScope.launch(coroutineExceptionHandler) {
+    private fun getMovies() = viewModelScope.launch(coroutineExceptionHandler) {
+        withContext(Dispatchers.IO) {
+            _popularMoviesState.postValue(DataState.Success(repository.getLocalMovies()))
+        }
+    }
 
+    fun updateMovies() = viewModelScope.launch(coroutineExceptionHandler) {
         _popularMoviesState.postValue(DataState.Loading)
-
         withContext(Dispatchers.IO) {
             _popularMoviesState.postValue(DataState.Success(repository.getMovies()))
         }
