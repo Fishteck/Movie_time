@@ -12,4 +12,13 @@ class Converters {
         return listOfString.joinToString(",")
     }
 
+    @TypeConverter
+    fun toListOfInt(flatStringList: String): List<Int> {
+        return flatStringList.split(",").map { it.toInt() }
+    }
+    @TypeConverter
+    fun fromListOfInt(listOfString: List<Int>): String {
+        return listOfString.joinToString(",")
+    }
+
 }

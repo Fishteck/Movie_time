@@ -1,5 +1,6 @@
 package ru.fishteck.movies_time.data.local
 
+import ru.fishteck.movies_time.data.local.dao.ProfileDAO
 import ru.fishteck.movies_time.data.models.ProfileModel
 import javax.inject.Inject
 

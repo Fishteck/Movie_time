@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import ru.fishteck.MovieApp
 import ru.fishteck.movies_time.utils.ApplicationContext
+import ru.fishteck.movies_time.utils.MovieApiQualifier
 import ru.fishteck.movies_time.utils.ViewModelFactory
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 @Module(includes = [
     AppBindModule::class,
     MovieLocalModule::class,
-    RepositoryBindModule::class
+    RepositoryBindModule::class,
+    RemoteModule::class
 ])
 class AppModule() {
 
@@ -24,6 +26,8 @@ class AppModule() {
         application.appComponent
         return application.applicationContext
     }
+
+
 
     @Provides
     @Singleton

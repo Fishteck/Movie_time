@@ -55,12 +55,17 @@
         app:layout_constraintEnd_toStartOf="@id/popular_movies_guideline_end_vertical"
         app:layout_constraintStart_toEndOf="@id/popular_movies_guideline_start_vertical"
         app:layout_constraintTop_toBottomOf="@id/popular_movies_genres_list">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popular_movies_list"
+        <com.faltenreich.skeletonlayout.SkeletonLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_movie" />
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_movies_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_movie" />
+        </com.faltenreich.skeletonlayout.SkeletonLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package ru.fishteck.movies_time.utils
+package ru.fishteck.movies_time.utils.states
 
 sealed class DataState<out T> {
     class Error(val message : String) : DataState<Nothing>()

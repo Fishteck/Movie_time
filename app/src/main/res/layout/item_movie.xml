@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,27 +11,27 @@
         android:id="@+id/item_movie_poster_image_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius_item_movie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="@dimen/corner_radius_item_movie">
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/item_movie_poster_image"
             android:layout_width="150dp"
             android:layout_height="216dp"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
-
 
     <TextView
         android:id="@+id/item_movie_poster_title"
         style="@style/text_roboto_500_style.14sp"
         android:layout_marginTop="@dimen/indent_8dp"
+        android:ellipsize="end"
         android:maxLines="1"
+        android:minWidth="150dp"
         android:singleLine="true"
         app:layout_constrainedWidth="true"
-        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"
@@ -42,6 +43,7 @@
         style="@style/text_roboto_400_style.12sp"
         android:layout_marginTop="@dimen/indent_10dp"
         android:maxLines="5"
+        android:minWidth="150dp"
         android:minLines="5"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="@id/item_movie_poster_image_container"
@@ -51,20 +53,20 @@
 
     <RatingBar
         android:id="@+id/item_movie_rating_bar"
-       style="@style/Widget.AppCompat.RatingBar.Small"
-        android:progressTint="@android:color/black"
-        android:progressBackgroundTint="@android:color/black"
-        android:secondaryProgressTint="@android:color/black"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias="0"
         android:layout_marginEnd="4dp"
         android:isIndicator="true"
         android:numStars="5"
+        android:progressBackgroundTint="@android:color/black"
+        android:progressTint="@android:color/black"
         android:rating="4"
-        android:stepSize="1"
+        android:secondaryProgressTint="@android:color/black"
+        android:stepSize="0.1"
         app:layout_constraintBottom_toBottomOf="@id/item_movie_age_limit"
         app:layout_constraintEnd_toStartOf="@+id/item_movie_age_limit"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/item_movie_poster_image_container"
         app:layout_constraintTop_toTopOf="@id/item_movie_age_limit" />
 

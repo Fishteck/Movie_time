@@ -1,35 +1,37 @@
 package ru.fishteck.movies_time.ui.moviedetails
 
+import android.util.Log
 import androidx.lifecycle.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
-import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.models.DetailMovie
 import ru.fishteck.movies_time.data.repository.MovieRepository
-import ru.fishteck.movies_time.utils.DataState
+import ru.fishteck.movies_time.utils.states.DataState
 
 class MovieDetailsViewModel(
-    private val movieId: Int,
-    private val repository: MovieRepository
+        private val movieId: Int,
+        private val repository: MovieRepository
 ) : ViewModel() {
 
-    private val _movieDetailState: LiveData<DataState<MovieModel>> = liveData(Dispatchers.IO) {
+    private val _movieDetailState: LiveData<DataState<DetailMovie>> = liveData(Dispatchers.IO) {
         emit(DataState.Loading)
         try {
             emit(DataState.Success(repository.getDetailMovie(movieId)))
         } catch (ex: Exception) {
             emit(DataState.Error(ex.message.toString()))
+            ex.message?.let { Log.e("PopularMoviesViewModel", it) }
         }
     }
 
-    val movieDetailState: LiveData<DataState<MovieModel>> = _movieDetailState
+    val movieDetailState: LiveData<DataState<DetailMovie>> = _movieDetailState
 
 }
 
 class MovieDetailsViewModelFactory @AssistedInject constructor(
-    @Assisted("movieId") private val movieId: Int,
-    private val repository: MovieRepository
+        @Assisted("movieId") private val movieId: Int,
+        private val repository: MovieRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
