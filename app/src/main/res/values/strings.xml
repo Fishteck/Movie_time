@@ -34,5 +34,7 @@
     <string name="profile_settings_report_a_problem">Сообщить о проблеме</string>
     <string name="profile_setting_exit">Выйти</string>
     <string name="profile_setting_enter">Войти</string>
+    <string name="base_image_path_w200">https://image.tmdb.org/t/p/w200/</string>
+    <string name="base_image_path_w400">https://image.tmdb.org/t/p/w500/</string>
 
 </resources>

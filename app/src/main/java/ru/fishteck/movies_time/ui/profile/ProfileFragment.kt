@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.textfield.TextInputEditText
-import ru.fishteck.MovieApp
 import ru.fishteck.appComponent
 import ru.fishteck.encPrefs
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.data.models.ProfileModel
-import ru.fishteck.movies_time.utils.ProfileState
+import ru.fishteck.movies_time.utils.states.ProfileState
 import ru.fishteck.movies_time.utils.ViewModelFactory
 import ru.fishteck.movies_time.utils.showToast
 import javax.inject.Inject

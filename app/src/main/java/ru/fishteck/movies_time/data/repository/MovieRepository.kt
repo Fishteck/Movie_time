@@ -1,12 +1,12 @@
 package ru.fishteck.movies_time.data.repository
 
-import ru.fishteck.movies_time.data.models.GenreModel
-import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.models.DetailMovie
+import ru.fishteck.movies_time.data.models.GenreDto
+import ru.fishteck.movies_time.models.Movie
 
 interface MovieRepository {
-    suspend fun getMovies() : List<MovieModel>
-    suspend fun getDetailMovie(id : Int) : MovieModel
-    fun getGenres() : List<GenreModel>
-    suspend fun getLocalMovies() : List<MovieModel>
-    suspend fun addAllMovies(movies : List<MovieModel>)
+    suspend fun getMovies() : List<Movie>?
+    suspend fun getDetailMovie(id : Int) : DetailMovie
+    suspend fun updateMovies() : List<Movie>?
+    suspend fun getGenres() : List<GenreDto>
 }

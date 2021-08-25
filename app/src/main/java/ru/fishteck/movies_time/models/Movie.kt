@@ -1,23 +1,18 @@
-package ru.fishteck.movies_time.data.models
+package ru.fishteck.movies_time.models
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = MovieModel.MOVIES_TABLE)
-data class MovieModel(
+@Entity(tableName = Movie.MOVIES_TABLE)
+data class Movie(
         val title: String?,
         val description: String?,
-        val rateScore: Int,
-        val ageRestriction: Int,
         val imageUrl: String?,
-
+        val rateScore: Float,
         @PrimaryKey(autoGenerate = false)
         val id: Int,
-        val genre: String
+        val ageRestriction : String
 ) {
-
     companion object {
         const val MOVIES_TABLE = "movies"
     }

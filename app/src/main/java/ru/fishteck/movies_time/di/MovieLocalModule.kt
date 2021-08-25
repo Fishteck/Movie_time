@@ -5,8 +5,9 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import ru.fishteck.movies_time.data.local.MovieDatabase
-import ru.fishteck.movies_time.data.local.MoviesDAO
-import ru.fishteck.movies_time.data.local.ProfileDAO
+import ru.fishteck.movies_time.data.local.dao.GenresDAO
+import ru.fishteck.movies_time.data.local.dao.MoviesDAO
+import ru.fishteck.movies_time.data.local.dao.ProfileDAO
 import ru.fishteck.movies_time.utils.ApplicationContext
 import javax.inject.Singleton
 
@@ -33,4 +34,9 @@ class MovieLocalModule {
     @Singleton
     fun provideProfileDAO(database: MovieDatabase): ProfileDAO =
         database.getProfilesDAO()
+
+    @Provides
+    @Singleton
+    fun provideGenresDAO(database: MovieDatabase): GenresDAO =
+            database.getGenresDAO()
 }

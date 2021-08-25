@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.fishteck.movies_time.data.models.ProfileModel
 import ru.fishteck.movies_time.data.repository.ProfileRepository
-import ru.fishteck.movies_time.utils.ProfileState
+import ru.fishteck.movies_time.utils.states.ProfileState
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(

@@ -7,22 +7,21 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.models.Movie
+import ru.fishteck.movies_time.utils.downloadAndSetImage
 
-class PopularMoviesAdapter(private val listener: MovieItemListener) : RecyclerView.Adapter<PopularMoviesHolder>() {
+class PopularMoviesAdapter(private val listener: MovieItemListener) :
+        RecyclerView.Adapter<PopularMoviesHolder>() {
 
     interface MovieItemListener {
         fun onClickedMovie(movieId: Int)
     }
 
-    private val items = mutableListOf<MovieModel>()
+    private val items = mutableListOf<Movie>()
 
-    fun getData() : List<MovieModel> = items
+    fun getData(): List<Movie> = items
 
-    fun setItems(items : List<MovieModel>) {
+    fun setItems(items: List<Movie>) {
         this.items.clear()
         this.items.addAll(items)
     }
@@ -35,36 +34,34 @@ class PopularMoviesAdapter(private val listener: MovieItemListener) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: PopularMoviesHolder, position: Int) {
+
         holder.bind(items[position], listener)
     }
 
     override fun getItemCount(): Int = items.size
 }
 
-class PopularMoviesHolder ( private val view : View)
-    : RecyclerView.ViewHolder(view) {
+class PopularMoviesHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    private val image : ImageView = view.findViewById(R.id.item_movie_poster_image)
-    private val title : TextView = view.findViewById(R.id.item_movie_poster_title)
-    private val description : TextView = view.findViewById(R.id.item_movie_poster_description)
-    private val ageLimit : TextView = view.findViewById(R.id.item_movie_age_limit)
-    private val ratingBar : RatingBar = view.findViewById(R.id.item_movie_rating_bar)
-
+    private val image: ImageView = view.findViewById(R.id.item_movie_poster_image)
+    private val title: TextView = view.findViewById(R.id.item_movie_poster_title)
+    private val description: TextView = view.findViewById(R.id.item_movie_poster_description)
+    private val ageLimit: TextView = view.findViewById(R.id.item_movie_age_limit)
+    private val ratingBar: RatingBar = view.findViewById(R.id.item_movie_rating_bar)
 
 
+    fun bind(item: Movie, listener: PopularMoviesAdapter.MovieItemListener) {
 
-    fun bind(item : MovieModel, listener: PopularMoviesAdapter.MovieItemListener) {
-
-        Glide
-                .with(view)
-                .load(item.imageUrl)
-                .centerCrop()
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .into(image)
+        item.imageUrl?.let {
+            image.downloadAndSetImage(
+                    it,
+                    view
+            )
+        }
         title.text = item.title
         description.text = item.description
-        ageLimit.text = item.ageRestriction.toString() + "+"
-        ratingBar.rating = item.rateScore.toFloat()
+        ageLimit.text = item.ageRestriction
+        ratingBar.rating = item.rateScore
         view.setOnClickListener {
             listener.onClickedMovie(movieId = item.id)
         }

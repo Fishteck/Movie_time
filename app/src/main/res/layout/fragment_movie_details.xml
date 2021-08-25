@@ -3,6 +3,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_details_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light_gray">
@@ -10,14 +11,17 @@
     <ImageView
         android:id="@+id/movie_details_poster"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/description_poster_image"
+        android:maxHeight="550dp"
         android:scaleType="centerCrop"
-        tools:src="@drawable/poster_wrath_of_man"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/poster_wrath_of_man" />
 
-    <include layout="@layout/layout_bottom_sheet"/>
+
+    <include layout="@layout/layout_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

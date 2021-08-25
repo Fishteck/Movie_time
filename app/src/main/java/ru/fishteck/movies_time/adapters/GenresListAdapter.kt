@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.fishteck.movies_time.R
-import ru.fishteck.movies_time.data.models.GenreModel
+import ru.fishteck.movies_time.data.models.GenreDto
 
 class GenresListAdapter(private val listener: GenreItemListener) : RecyclerView.Adapter<GenresListHolder>(){
 
@@ -14,9 +14,9 @@ class GenresListAdapter(private val listener: GenreItemListener) : RecyclerView.
         fun onClickedGenre(text : String)
     }
 
-    private val items = mutableListOf<GenreModel>()
+    private val items = mutableListOf<GenreDto>()
 
-    fun setItems(items : List<GenreModel>) {
+    fun setItems(items : List<GenreDto>) {
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -41,7 +41,7 @@ class GenresListHolder(private val view : View)
 
     private val text : TextView = view.findViewById(R.id.item_genre_text)
 
-    fun bind(item : GenreModel, listener: GenresListAdapter.GenreItemListener) {
+    fun bind(item : GenreDto, listener: GenresListAdapter.GenreItemListener) {
         text.text = item.name
         view.setOnClickListener {
             listener.onClickedGenre(item.name)

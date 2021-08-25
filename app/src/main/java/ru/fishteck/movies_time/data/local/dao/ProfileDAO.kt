@@ -1,4 +1,4 @@
-package ru.fishteck.movies_time.data.local
+package ru.fishteck.movies_time.data.local.dao
 
 import androidx.room.*
 import ru.fishteck.movies_time.data.models.ProfileModel

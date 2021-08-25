@@ -12,14 +12,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import ru.fishteck.appComponent
 import ru.fishteck.movies_time.PopularMoviesAdapter
 import ru.fishteck.movies_time.R
 import ru.fishteck.movies_time.adapters.GenresListAdapter
-import ru.fishteck.movies_time.data.models.MovieModel
+import ru.fishteck.movies_time.models.Movie
 import ru.fishteck.movies_time.utils.ViewModelFactory
 import ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment
 import ru.fishteck.movies_time.utils.*
+import ru.fishteck.movies_time.utils.diff_utils.DiffUtilMovies
+import ru.fishteck.movies_time.utils.states.DataState
 import javax.inject.Inject
 
 class PopularMoviesFragment
@@ -31,6 +35,8 @@ class PopularMoviesFragment
     private lateinit var genresAdapter: GenresListAdapter
     private lateinit var diffUtilMovies: DiffUtilMovies
     private lateinit var refreshLayout: SwipeRefreshLayout
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var skeleton: Skeleton
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -41,32 +47,41 @@ class PopularMoviesFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initMoviesRecycler()
+        initMoviesRecycler(view)
         initGenresRecycler()
         initRefreshLayout(view)
-        genresAdapter.setItems(popularMoviesViewModel.getGenres())
-        initObserver()
+        initPopularMoviesObserver()
+        initGenresObserver()
     }
 
-    private fun setRecyclerData(value: List<MovieModel>) {
+    private fun initGenresObserver() {
+        popularMoviesViewModel.genreList.observe(viewLifecycleOwner, { genres ->
+            genresAdapter.setItems(genres)
+        })
+    }
+
+    private fun setRecyclerData(value: List<Movie>) {
         diffUtilMovies = DiffUtilMovies(moviesAdapter.getData(), value)
         val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
         moviesAdapter.setItems(value)
         diffResult.dispatchUpdatesTo(moviesAdapter)
     }
 
-    private fun initObserver() {
+    private fun initPopularMoviesObserver() {
         popularMoviesViewModel.popularMoviesState.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is DataState.Success -> {
-                    setRecyclerData(state.data)
+                    state.data?.let { setRecyclerData(it) }
+                    skeleton.showOriginal()
                     refreshLayout.isRefreshing = false
                 }
                 is DataState.Error -> {
                     showToast(state.message)
+                    skeleton.showOriginal()
                     refreshLayout.isRefreshing = false
                 }
                 is DataState.Loading -> {
+                    skeleton.showSkeleton()
                     refreshLayout.isRefreshing = true
                 }
             }
@@ -82,6 +97,7 @@ class PopularMoviesFragment
         refreshLayout = view.findViewById(R.id.popular_movies_refresh_layout)
         refreshLayout.setOnRefreshListener {
             popularMoviesViewModel.updateMovies()
+            recyclerView.smoothScrollToPosition(0)
         }
     }
 
@@ -95,12 +111,14 @@ class PopularMoviesFragment
 
     }
 
-    private fun initMoviesRecycler() {
+    private fun initMoviesRecycler(view: View) {
         val layoutManager: GridLayoutManager = GridLayoutManager(context, 2)
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.popular_movies_list)
-        recyclerView?.adapter = moviesAdapter
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.addItemDecoration(GridItemDecoration(10, 2))
+        recyclerView = view.findViewById<RecyclerView>(R.id.popular_movies_list)
+        recyclerView.adapter = moviesAdapter
+        recyclerView.layoutManager = layoutManager
+        recyclerView.addItemDecoration(GridItemDecoration(10, 2))
+        skeleton = recyclerView.applySkeleton(R.layout.item_movie, itemCount = 6)
+        skeleton.maskCornerRadius = 35f
     }
 
     override fun onClickedMovie(movieId: Int) {
