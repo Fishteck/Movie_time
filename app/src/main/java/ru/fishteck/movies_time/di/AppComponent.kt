@@ -14,21 +14,21 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
-     fun inject(fragment: PopularMoviesFragment)
-     fun inject(fragment: MovieDetailsFragment)
-     fun inject(fragment: ProfileFragment)
-     fun inject(fragment: LogInFragment)
+    fun inject(fragment: PopularMoviesFragment)
+    fun inject(fragment: MovieDetailsFragment)
+    fun inject(fragment: ProfileFragment)
+    fun inject(fragment: LogInFragment)
 
-     @Component.Builder
-     interface Builder {
+    @Component.Builder
+    interface Builder {
 
-          @BindsInstance
-          fun application(application: MovieApp) : Builder
+        @BindsInstance
+        fun application(application: MovieApp): Builder
 
-          @BindsInstance
-          fun apiKey(@MovieApiQualifier apiKey : String) : Builder
+        @BindsInstance
+        fun apiKey(@MovieApiQualifier apiKey: String): Builder
 
-          fun build() : AppComponent
-     }
+        fun build(): AppComponent
+    }
 
 }

@@ -1,4 +1,4 @@
-package ru.fishteck.movies_time.utils
+package ru.fishteck.movies_time.utils.keys
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
