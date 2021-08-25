@@ -65,7 +65,6 @@ class PopularMoviesFragment
         val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilMovies)
         moviesAdapter.setItems(value)
         diffResult.dispatchUpdatesTo(moviesAdapter)
-        recyclerView.smoothScrollToPosition(0)
     }
 
     private fun initPopularMoviesObserver() {
@@ -98,6 +97,7 @@ class PopularMoviesFragment
         refreshLayout = view.findViewById(R.id.popular_movies_refresh_layout)
         refreshLayout.setOnRefreshListener {
             popularMoviesViewModel.updateMovies()
+            recyclerView.smoothScrollToPosition(0)
         }
     }
 
@@ -118,6 +118,7 @@ class PopularMoviesFragment
         recyclerView.layoutManager = layoutManager
         recyclerView.addItemDecoration(GridItemDecoration(10, 2))
         skeleton = recyclerView.applySkeleton(R.layout.item_movie, itemCount = 6)
+        skeleton.maskCornerRadius = 35f
     }
 
     override fun onClickedMovie(movieId: Int) {

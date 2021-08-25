@@ -11,13 +11,16 @@
     <ImageView
         android:id="@+id/movie_details_poster"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/description_poster_image"
+        android:maxHeight="550dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/poster_wrath_of_man" />
+
 
     <include layout="@layout/layout_bottom_sheet" />
 

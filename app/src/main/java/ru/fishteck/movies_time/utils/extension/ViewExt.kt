@@ -10,7 +10,6 @@ fun ImageView.downloadAndSetImage(photoUrl: String, view: View) {
     Glide
         .with(view)
         .load(photoUrl)
-        .centerCrop()
         .placeholder(R.drawable.ic_launcher_foreground)
         .into(this)
 }
