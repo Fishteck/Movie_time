@@ -2,6 +2,7 @@ package ru.fishteck.movies_time.ui.moviedetails
 
 import android.content.Context
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -31,6 +33,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     private lateinit var ratingBar: RatingBar
     private lateinit var genre: TextView
     private var movieId: Int = 0
+    private val args : MovieDetailsFragmentArgs by navArgs()
 
     @Inject
     lateinit var factory: MovieDetailsViewModelFactory.Factory
@@ -46,6 +49,16 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         setFields(view)
         initObserver()
         initRecyclerView(view)
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        poster.apply {
+            transitionName = args.uri
+            args.uri?.let {
+                downloadAndSetImage(
+                    it,
+                    this
+                )
+            }
+        }
     }
 
     private fun initRecyclerView(view: View) {
@@ -85,15 +98,6 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     }
 
     private fun setData(data: DetailMovie) {
-        view?.let {
-            data.imageUrl?.let { it1 ->
-                poster.downloadAndSetImage(
-                    it1,
-                    it
-                )
-            }
-        }
-
         title.text = data.title
         description.text = data.description
         ratingBar.rating = data.rateScore
@@ -104,7 +108,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
-        movieId = requireArguments().getInt(ARG_MOVIE_ID)
+        movieId = args.id
     }
 
     private fun setFields(view: View) {
@@ -115,8 +119,5 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         ratingBar = view.findViewById(R.id.movie_details_rating_bar)
         genre = view.findViewById(R.id.movie_details_genre)
     }
-
-    companion object {
-        const val ARG_MOVIE_ID = "movie_id"
-    }
+    
 }

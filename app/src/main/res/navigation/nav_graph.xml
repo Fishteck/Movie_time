@@ -10,17 +10,29 @@
         android:name="ru.fishteck.movies_time.ui.movies.PopularMoviesFragment"
         android:label="fragment_popular_movies"
         tools:layout="@layout/fragment_popular_movies" >
-        <action
-            android:id="@+id/action_popularMoviesFragment_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+
         <action
             android:id="@+id/action_popularMoviesFragment_to_profileFragment"
             app:destination="@id/menu_profile" />
+        <action
+            android:id="@+id/action_menu_home_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+             />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="ru.fishteck.movies_time.ui.moviedetails.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment" >
+        <argument
+            android:name="uri"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/menu_profile"
         android:name="ru.fishteck.movies_time.ui.profile.ProfileFragment"
