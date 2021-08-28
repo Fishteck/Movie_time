@@ -1,21 +1,15 @@
 package ru.fishteck.movies_time.ui
 
-import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
-import androidx.security.crypto.MasterKeys
+import androidx.work.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.fishteck.movies_time.*
-import ru.fishteck.movies_time.di.AppComponent
+import ru.fishteck.movies_time.R
+import ru.fishteck.movies_time.data.remote.MovieWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +20,22 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.main_nav_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         setUpBottomNav(navController)
+        setUpWorker()
+    }
 
+    private fun setUpWorker() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+        val worker =
+            PeriodicWorkRequestBuilder<MovieWorker>(1, TimeUnit.HOURS).setConstraints(constraints)
+                .build()
+        val workManager = WorkManager.getInstance(this)
+        workManager.enqueueUniquePeriodicWork(
+            "MovieWork",
+            ExistingPeriodicWorkPolicy.KEEP,
+            worker
+        )
     }
 
     private fun setUpBottomNav(navController: NavController) {

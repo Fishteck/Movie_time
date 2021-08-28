@@ -4,17 +4,20 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.fragment.app.Fragment
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import androidx.security.crypto.MasterKeys
+import androidx.work.Configuration
 import ru.fishteck.movies_time.BuildConfig
 import ru.fishteck.movies_time.di.AppComponent
-import ru.fishteck.movies_time.di.AppModule
 import ru.fishteck.movies_time.di.DaggerAppComponent
+import javax.inject.Inject
 
 
-class MovieApp : Application() {
+class MovieApp : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerConfiguration: Configuration
+
     lateinit var appComponent: AppComponent
         private set
 
@@ -29,6 +32,7 @@ class MovieApp : Application() {
             .apiKey(BuildConfig.MOVIE_API_KEY)
             .build()
 
+
         val masterKey = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             MasterKey.Builder(this)
                 .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -39,7 +43,7 @@ class MovieApp : Application() {
                 .build()
         }
 
-         encPrefs = EncryptedSharedPreferences.create(
+        encPrefs = EncryptedSharedPreferences.create(
             applicationContext,
             "ENCRYPTED_PREF_FILE_NAME",
             masterKey,
@@ -48,6 +52,11 @@ class MovieApp : Application() {
         )
 
     }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return workerConfiguration
+    }
+
 }
 
 val Context.appComponent: AppComponent
@@ -55,7 +64,6 @@ val Context.appComponent: AppComponent
         is MovieApp -> appComponent
         else -> applicationContext.appComponent
     }
-
 
 
 val Context.encPrefs: SharedPreferences

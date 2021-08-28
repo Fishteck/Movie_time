@@ -3,9 +3,11 @@ package ru.fishteck.movies_time.di
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.Configuration
 import dagger.Module
 import dagger.Provides
 import ru.fishteck.MovieApp
+import ru.fishteck.movies_time.data.remote.IoschedWorkerFactory
 import ru.fishteck.movies_time.utils.ApplicationContext
 import ru.fishteck.movies_time.utils.MovieApiQualifier
 import ru.fishteck.movies_time.utils.ViewModelFactory
@@ -27,7 +29,15 @@ class AppModule() {
         return application.applicationContext
     }
 
-
+    @Singleton
+    @Provides
+    fun provideWorkManagerConfiguration(
+        ioschedWorkerFactory: IoschedWorkerFactory
+    ): Configuration {
+        return Configuration.Builder()
+            .setWorkerFactory(ioschedWorkerFactory)
+            .build()
+    }
 
     @Provides
     @Singleton
