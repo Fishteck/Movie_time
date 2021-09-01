@@ -3,8 +3,10 @@ package ru.fishteck.movies_time.ui.movies
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DiffUtil
@@ -28,14 +30,14 @@ import javax.inject.Inject
 
 class PopularMoviesFragment
     : Fragment(R.layout.fragment_popular_movies),
-        PopularMoviesAdapter.MovieItemListener,
-        GenresListAdapter.GenreItemListener {
+    PopularMoviesAdapter.MovieItemListener,
+    GenresListAdapter.GenreItemListener {
 
     private val moviesAdapter: PopularMoviesAdapter = PopularMoviesAdapter(this)
     private lateinit var genresAdapter: GenresListAdapter
     private lateinit var diffUtilMovies: DiffUtilMovies
     private lateinit var refreshLayout: SwipeRefreshLayout
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var skeleton: Skeleton
 
     @Inject
@@ -115,16 +117,24 @@ class PopularMoviesFragment
         val layoutManager: GridLayoutManager = GridLayoutManager(context, 2)
         recyclerView = view.findViewById<RecyclerView>(R.id.popular_movies_list)
         recyclerView.adapter = moviesAdapter
+        recyclerView.itemAnimator = MoviesItemAnimator()
         recyclerView.layoutManager = layoutManager
         recyclerView.addItemDecoration(GridItemDecoration(10, 2))
         skeleton = recyclerView.applySkeleton(R.layout.item_movie, itemCount = 6)
         skeleton.maskCornerRadius = 35f
     }
 
-    override fun onClickedMovie(movieId: Int) {
+    override fun onClickedMovie(movieId: Int, image: ImageView, imageUrl: String) {
+        val extras = FragmentNavigatorExtras(
+            image to imageUrl
+        )
+        val action = PopularMoviesFragmentDirections.actionMenuHomeToMovieDetailsFragment(
+            uri = imageUrl,
+            id = movieId
+        )
         findNavController().navigate(
-                R.id.action_popularMoviesFragment_to_movieDetailsFragment,
-                bundleOf(MovieDetailsFragment.ARG_MOVIE_ID to movieId)
+            action,
+            extras
         )
     }
 

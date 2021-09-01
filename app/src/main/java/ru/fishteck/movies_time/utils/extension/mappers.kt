@@ -9,7 +9,7 @@ fun DetailMovieDto.toDetailMovie(cast: List<CastDto>, releaseDates: List<Release
     return DetailMovie(
             title = this.title,
             description = this.description,
-            imageUrl = "https://image.tmdb.org/t/p/w500/" + this.imageUrl,
+            imageUrl = "https://image.tmdb.org/t/p/original" + this.imageUrl,
             rateScore = this.rateScore.ratingConverter(),
             id = this.id,
             genre = this.genres ?: emptyList(),
@@ -23,7 +23,7 @@ fun MovieDto.toMovie(releaseDates: List<ReleaseDatesDto>): Movie {
     return Movie(
             title = this.title,
             description = this.description,
-            imageUrl = "https://image.tmdb.org/t/p/w200/" + this.imageUrl,
+            imageUrl = "https://image.tmdb.org/t/p/original" + this.imageUrl,
             rateScore = this.rateScore.ratingConverter(),
             id = this.id,
             ageRestriction = getAgeLimit(releaseDates)

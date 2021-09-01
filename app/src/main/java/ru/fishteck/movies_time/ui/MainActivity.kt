@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val navController: NavController = navHostFragment.navController
         setUpBottomNav(navController)
         setUpWorker()
+
     }
 
     private fun setUpWorker() {
